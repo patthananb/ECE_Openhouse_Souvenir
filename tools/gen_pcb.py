@@ -56,31 +56,29 @@ LEDS = {
     "D10": (23.0, 4.0, "a"), "D11": (20.5, 6.5, "f"), "D12": (23.0, 9.0, "g"),
     "D13": (20.5, 11.5, "e"), "D14": (23.0, 14.0, "d"),
 }
-# 0603 hand-solder parts have 3.3 x 1.46 mm courtyards, so each series
-# resistor sits inside its digit: horizontal ones shifted right past the
-# vertical-segment resistors, vertical ones beside the left-hand LEDs.
-# Offsets (bottom view) from the LED centre: (dx, dy, horizontal?)
-R_REL = {
-    "a": (1.42, 1.5, True),
-    "g": (1.42, -1.5, True),
-    "d": (1.42, -1.5, True),
-    "f": (1.5, 0.0, False),
-    "e": (1.5, 0.0, False),
+# LEDs stand alone in the digit area. Their 3.3 k resistors form one row of
+# vertical 0603s (1.6 mm pitch) between the digits and the 555, grouped
+# under the digit they feed so anode traces stay short and uncrossed.
+R_ROW_Y = 17.6
+R_ROW = {  # resistor: x (bottom view); pad toward the LEDs = anode side
+    "R4": 3.0, "R6": 4.6, "R3": 6.2, "R5": 7.8, "R7": 9.4,        # E1: f e a g d
+    "R9": 12.2, "R10": 13.8, "R8": 15.4, "R11": 17.0,              # C:  f e a d
+    "R13": 20.2, "R15": 21.8, "R12": 23.4, "R14": 25.0, "R16": 26.6,  # E2: f e a g d
 }
 
 # --- everything else (bottom view x_bv, y, orientation deg) ----------------
 OTHERS = {
-    # U1 at 270: pins 1-4 face the LED field (OUT toward the sink bus),
-    # pins 5-8 face the timing parts below.
-    "U1": (15.0, 20.5, 270),
-    "C2": (18.6, 22.0, 90),    # decoupling: centre 1.96 mm from pin 8, pad1 (VCC) at the pin-8 end
-    "R1": (18.6, 25.4, 270),   # VCC (top pad) -> DIS
-    "R2": (15.0, 25.8, 0),     # DIS -> TH, under pins 6/7
-    "C1": (11.6, 25.8, 0),     # TH -> GND
-    "C3": (10.4, 22.6, 0),     # CV (pin 5) -> GND
-    "TP1": (4.0, 26.8, 0),     # +
-    "TP2": (7.6, 26.8, 0),     # -
-    "TP3": (25.6, 26.5, 0),    # OUT probe
+    # U1 at 270: pins 1-4 (GND, TRIG, OUT, RST) face up toward the LED field,
+    # pins 5-8 (CV, THR, DIS, VCC) face the timing parts along the bottom edge.
+    "U1": (15.0, 24.2, 270),
+    "C2": (18.6, 25.7, 90),    # decoupling: centre 1.96 mm from pin 8, pad1 (VCC) at the pin-8 end
+    "R2": (15.0, 28.75, 0),    # DIS -> TH, under pins 7/6
+    "R1": (18.4, 28.75, 0),    # VCC -> DIS (DIS pad next to R2 DIS pad)
+    "C1": (11.6, 28.75, 0),    # TH -> GND
+    "C3": (11.2, 25.0, 90),    # CV (pin 5) -> GND
+    "TP1": (4.0, 26.4, 0),     # +
+    "TP2": (7.6, 26.4, 0),     # -
+    "TP3": (25.6, 26.0, 0),    # OUT probe
 }
 
 
@@ -257,24 +255,16 @@ def build():
         board.Add(fp)
         fps[ref] = fp
 
-    # LEDs + their series resistors
+    # standalone LEDs, then the resistor row
     for ref, (x, y, seg) in LEDS.items():
-        k = int(ref[1:])
-        angle = 0 if seg in "agd" else 90
-        place(fps[ref], x, y, angle)
-        dx, dy, horiz = R_REL[seg]
-        rx, ry = x + dx, y + dy
-        angle = 0 if horiz else 90
-        anode = pad_bv(fps[ref], "2")
-        r = fps[f"R{k + 2}"]
+        place(fps[ref], x, y, 0 if seg in "agd" else 90)
+    for ref, x in R_ROW.items():
         best = None
-        for a in (angle, angle + 180):  # pick the flip that puts R pin 2 next to the anode
-            place(r, rx, ry, a % 360)
-            p2 = pad_bv(r, "2")
-            d = (p2[0] - anode[0]) ** 2 + (p2[1] - anode[1]) ** 2
-            if best is None or d < best[0]:
-                best = (d, a % 360)
-        place(r, rx, ry, best[1])
+        for a in (90, 270):  # put pin 2 (anode side) on the LED side of the row
+            place(fps[ref], x, R_ROW_Y, a)
+            if best is None or pad_bv(fps[ref], "2")[1] < best[0]:
+                best = (pad_bv(fps[ref], "2")[1], a)
+        place(fps[ref], x, R_ROW_Y, best[1])
 
     for ref, (x, y, a) in OTHERS.items():
         place(fps[ref], x, y, a)
