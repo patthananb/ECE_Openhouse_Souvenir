@@ -56,31 +56,31 @@ LEDS = {
     "D10": (23.0, 4.0, "a"), "D11": (20.5, 6.5, "f"), "D12": (23.0, 9.0, "g"),
     "D13": (20.5, 11.5, "e"), "D14": (23.0, 14.0, "d"),
 }
-# Series resistor sits parallel to its LED, offset toward the digit interior
-# (normal, bottom view) and nudged along the axis so neighbours' courtyards clear.
-R_OFFSET = 1.05
-R_NUDGE = 0.3
-SEG_GEOM = {  # segment: (normal, along-axis nudge) in bottom view
-    "a": ((0, 1), (R_NUDGE, 0)),
-    "g": ((0, -1), (R_NUDGE, 0)),
-    "d": ((0, -1), (R_NUDGE, 0)),
-    "f": ((1, 0), (0, R_NUDGE)),
-    "e": ((1, 0), (0, -R_NUDGE)),
+# 0603 hand-solder parts have 3.3 x 1.46 mm courtyards, so each series
+# resistor sits inside its digit: horizontal ones shifted right past the
+# vertical-segment resistors, vertical ones beside the left-hand LEDs.
+# Offsets (bottom view) from the LED centre: (dx, dy, horizontal?)
+R_REL = {
+    "a": (1.42, 1.5, True),
+    "g": (1.42, -1.5, True),
+    "d": (1.42, -1.5, True),
+    "f": (1.5, 0.0, False),
+    "e": (1.5, 0.0, False),
 }
 
 # --- everything else (bottom view x_bv, y, orientation deg) ----------------
 OTHERS = {
-    # U1 at 270: pins 1-4 face the LED field (OUT straight up to the sink bus),
+    # U1 at 270: pins 1-4 face the LED field (OUT toward the sink bus),
     # pins 5-8 face the timing parts below.
     "U1": (15.0, 20.5, 270),
-    "C2": (18.3, 21.6, 90),    # decoupling, pad1 ~1.7 mm from pin 8, pad2 -> pin 1
-    "R1": (18.3, 24.3, 270),   # VCC (top pad) -> DIS
-    "R2": (15.0, 25.4, 0),     # pad1 under pin 7 (DIS), pad2 under pin 6 (TH)
-    "C1": (13.1, 25.4, 0),     # TH -> GND
-    "C3": (11.2, 23.0, 0),     # CV (pin 5) -> GND
+    "C2": (18.6, 22.0, 90),    # decoupling: centre 1.96 mm from pin 8, pad1 (VCC) at the pin-8 end
+    "R1": (18.6, 25.4, 270),   # VCC (top pad) -> DIS
+    "R2": (15.0, 25.8, 0),     # DIS -> TH, under pins 6/7
+    "C1": (11.6, 25.8, 0),     # TH -> GND
+    "C3": (10.4, 22.6, 0),     # CV (pin 5) -> GND
     "TP1": (4.0, 26.8, 0),     # +
     "TP2": (7.6, 26.8, 0),     # -
-    "TP3": (25.6, 26.5, 0),    # OUT probe, end of the right-hand sink collector
+    "TP3": (25.6, 26.5, 0),    # OUT probe
 }
 
 
@@ -262,8 +262,9 @@ def build():
         k = int(ref[1:])
         angle = 0 if seg in "agd" else 90
         place(fps[ref], x, y, angle)
-        (nx, ny), (sx, sy) = SEG_GEOM[seg]
-        rx, ry = x + nx * R_OFFSET + sx, y + ny * R_OFFSET + sy
+        dx, dy, horiz = R_REL[seg]
+        rx, ry = x + dx, y + dy
+        angle = 0 if horiz else 90
         anode = pad_bv(fps[ref], "2")
         r = fps[f"R{k + 2}"]
         best = None
