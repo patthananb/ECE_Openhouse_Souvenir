@@ -7,3 +7,5 @@ _autosave-*
 # generated check reports
 hardware/*.rpt
 __pycache__/
+# machine-specific MCP registration (Konnect)
+.mcp.json
