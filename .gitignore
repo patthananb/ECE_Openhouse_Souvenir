@@ -9,3 +9,5 @@ hardware/*.rpt
 __pycache__/
 # machine-specific MCP registration (Konnect)
 .mcp.json
+# autorouter round-trip artifacts (regenerate with tools/route.py)
+hardware/routing/
