@@ -61,10 +61,18 @@ LEDS = {
 # under the digit they feed so anode traces stay short and uncrossed.
 R_ROW_Y = 17.6
 R_ROW = {  # resistor: x (bottom view); pad toward the LEDs = anode side
-    "R4": 3.0, "R6": 4.6, "R3": 6.2, "R5": 7.8, "R7": 9.4,        # E1: f e a g d
-    "R9": 12.2, "R10": 13.8, "R8": 15.4, "R11": 17.0,              # C:  f e a d
-    "R13": 20.2, "R15": 21.8, "R12": 23.4, "R14": 25.0, "R16": 26.6,  # E2: f e a g d
+    # Single-sided order: f and e anodes leave their digit downward on the
+    # left, d/g/a anodes through the channel on the digit's right (nested,
+    # d innermost), so the row reads f e d g a per digit and nothing crosses.
+    "R4": 3.0, "R6": 4.6, "R7": 6.2, "R5": 7.8, "R3": 9.4,        # E1: f e d g a
+    "R9": 12.2, "R10": 13.8, "R11": 15.4, "R8": 17.0,              # C:  f e d a
+    "R13": 20.2, "R15": 21.8, "R16": 23.4, "R14": 25.0, "R12": 26.6,  # E2: f e d g a
 }
+# LED polarity for single-sided routing: cathodes on the left end of a/g/d
+# (180 deg) and the top end of f/e (270 deg) all meet at each digit's inner
+# left corner, where one LED_SINK trunk collects them. The spec's 0/90 deg puts
+# cathodes on opposite sides and forces sink/anode crossings on one layer.
+LED_ROT_H, LED_ROT_V = 180, 270
 
 # --- everything else (bottom view x_bv, y, orientation deg) ----------------
 OTHERS = {
@@ -257,7 +265,7 @@ def build():
 
     # standalone LEDs, then the resistor row
     for ref, (x, y, seg) in LEDS.items():
-        place(fps[ref], x, y, 0 if seg in "agd" else 90)
+        place(fps[ref], x, y, LED_ROT_H if seg in "agd" else LED_ROT_V)
     for ref, x in R_ROW.items():
         best = None
         for a in (90, 270):  # put pin 2 (anode side) on the LED side of the row
