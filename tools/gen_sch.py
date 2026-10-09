@@ -232,6 +232,8 @@ def build():
         sym = s.part(ref, x * G, 29 * G, ref_off=(2.54, -3.81), val_off=(2.54, -1.27))
         s.connect(sym, "1", net)
 
+    s.part("H1", 76 * G, 38 * G, ref_off=(2.54, -1.27), val_off=(2.54, 1.27))
+
     # power flags so ERC sees VCC/GND driven (power enters via test pads)
     for net, x in (("VCC", 84), ("GND", 92)):
         p0, p1 = (x * G, 29 * G), ((x + 3) * G, 29 * G)
