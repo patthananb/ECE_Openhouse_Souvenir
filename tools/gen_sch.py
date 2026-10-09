@@ -99,8 +99,10 @@ class Sheet:
         return pos, (-round(dx), round(dy))
 
     def symbol(self, ref, lib_id, x, y, angle=0, value=None, footprint="", fields=None,
-               ref_off=(2.54, -1.27), val_off=(2.54, 1.27), hide_val=False):
+               ref_off=(2.54, -1.27), val_off=(2.54, 1.27), hide_val=False, in_bom=None):
         self._lib(lib_id)
+        if in_bom is None:
+            in_bom = not ref.startswith("#")
         sym = dict(ref=ref, lib_id=lib_id, x=x, y=y, angle=angle)
         props = [("Reference", ref, ref_off, ref.startswith("#")),
                  ("Value", value, val_off, hide_val),
@@ -118,7 +120,7 @@ class Sheet:
         pin_txt = "".join(f'\t\t(pin "{p}"\n\t\t\t(uuid "{uid(ref, "pin", p)}")\n\t\t)\n' for p in pins)
         self.items.append(
             f'\t(symbol\n\t\t(lib_id "{lib_id}")\n\t\t(at {x} {y} {angle})\n\t\t(unit 1)\n'
-            f'\t\t(exclude_from_sim no)\n\t\t(in_bom {"no" if ref.startswith("#") else "yes"})\n'
+            f'\t\t(exclude_from_sim no)\n\t\t(in_bom {"yes" if in_bom else "no"})\n'
             f'\t\t(on_board {"no" if ref.startswith("#") else "yes"})\n\t\t(dnp no)\n'
             f'\t\t(uuid "{uid(ref)}")\n{ptxt}{pin_txt}'
             f'\t\t(instances\n\t\t\t(project "{PROJECT}"\n\t\t\t\t(path "/{ROOT_UUID}"\n'
@@ -126,9 +128,11 @@ class Sheet:
         return sym
 
     def part(self, ref, x, y, angle=0, **kw):
-        lib_id, value, fp, lcsc, mpn, _lt, desc = PARTS[ref]
-        fields = {"Description": desc, "LCSC": lcsc, "MPN": mpn}
-        return self.symbol(ref, lib_id, x, y, angle, value, fp, fields, **kw)
+        lib_id, value, fp, lcsc, mpn, lib_type, desc = PARTS[ref]
+        fields = {k: v for k, v in (("Description", desc), ("LCSC", lcsc), ("MPN", mpn)) if v}
+        # test pads and the keychain hole are bare copper/drill, not BOM items
+        return self.symbol(ref, lib_id, x, y, angle, value, fp, fields,
+                           in_bom=lib_type != "none", **kw)
 
     def wire(self, a, b):
         self.items.append(f'\t(wire\n\t\t(pts\n\t\t\t(xy {a[0]} {a[1]}) (xy {b[0]} {b[1]})\n\t\t)\n'
