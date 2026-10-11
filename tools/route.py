@@ -44,15 +44,21 @@ AUTOROUTE = """    (autoroute_settings
 """
 
 
-def inset_boundary():
-    """Rounded-rect outline shrunk by EDGE_INSET, as a DSN path (y negated)."""
+def inset_boundary(board):
+    """Rounded-rect outline shrunk by EDGE_INSET, as a DSN path (y negated).
+
+    Positioned from the board's actual Edge.Cuts bounding box, so it follows
+    the board wherever it sits on the drawing sheet.
+    """
+    bb = board.GetBoardEdgesBoundingBox()
+    ox, oy = bb.GetLeft() / 1000.0, bb.GetTop() / 1000.0  # nm -> um
     r = CORNER_R - EDGE_INSET
     lo, hi = CORNER_R, BOARD - CORNER_R
     pts = []
     for cx, cy, a0 in ((hi, lo, -90), (hi, hi, 0), (lo, hi, 90), (lo, lo, 180)):
         for k in range(9):
             a = math.radians(a0 + k * 90 / 8)
-            pts.append((cx + r * math.cos(a), cy + r * math.sin(a)))
+            pts.append((ox + cx + r * math.cos(a), oy + cy + r * math.sin(a)))
     pts.append(pts[0])
     return "(path pcb 0  " + "  ".join(f"{x:.1f} {-y:.1f}" for x, y in pts) + ")"
 
@@ -60,7 +66,7 @@ def inset_boundary():
 # Keepouts on every LED and LED resistor. With them on the 555 cluster too,
 # Freerouting could not close C3->GND; relaxed there, it finds a planar route
 # that still uses no pad gap. between_pad_crossings() reports any that appear.
-UNDER_PART_OK = {"R1", "R2", "C1", "C2", "C3", "U1"}
+UNDER_PART_OK = {"U1"}  # SOIC pin gaps only; checked again after routing
 
 
 def between_pad_crossings(board):
@@ -134,7 +140,7 @@ def handsolder_keepouts(board):
 def export_dsn(board, dsn):
     assert pcbnew.ExportSpecctraDSN(board, dsn), "DSN export failed"
     text = open(dsn).read()
-    text = re.sub(r"\(boundary\s*\(path pcb 0.*?\)\s*\)", "(boundary\n      " + inset_boundary() + "\n    )",
+    text = re.sub(r"\(boundary\s*\(path pcb 0.*?\)\s*\)", "(boundary\n      " + inset_boundary(board) + "\n    )",
                   text, count=1, flags=re.S)
     # Order matters: Freerouting 2.4.1 silently drops the whole netlist when a
     # keepout precedes autoroute_settings inside (structure ...).
@@ -157,6 +163,41 @@ def route(dsn, ses, passes):
         sys.exit(1)
 
 
+# Hand-placed, locked tracks exported as fixed wiring before autorouting
+# (bottom-view mm; converted with gen_pcb's coordinate helpers).
+# TH: pin 2 -> under the SOIC body -> pin 6. Freerouting otherwise spends the
+# under-body strip on other nets and leaves this link unrouted.
+PREROUTES = [
+    # TH: pin 2 -> under the body -> out of its left end (loops round to pin 6 via C1/R2)
+    ("/TH", 0.2, [(15.635, 21.725), (15.635, 22.95), (15.285, 23.3), (12.0, 23.3)]),
+    # GND: pin 1 -> under the body -> left end, beneath the TH lane, to C3/C1
+    ("GND", 0.3, [(16.905, 21.725), (16.905, 23.75), (16.555, 24.1), (12.0, 24.1)]),
+    # VCC ring: pin 4 -> up -> left -> round the board edge (chamfered corners) -> pin 8.
+    # It puts the LED field, Q1, OUT and pin 1 on the same side of every barrier.
+    ("VCC", 0.3, [(13.095, 21.725), (13.095, 20.45), (0.6, 20.45), (0.6, 1.6), (1.6, 0.6),
+                  (28.4, 0.6), (29.4, 1.6), (29.4, 26.2), (28.4, 27.2), (17.4, 27.2),
+                  (16.905, 26.705)]),
+    # stubs onto the ring (Freerouting will not join a fixed wire mid-segment)
+    ("VCC", 0.3, [(2.2, 18.95), (2.2, 20.45)]),     # Q1 emitter
+    ("VCC", 0.3, [(24.5, 28.6), (24.5, 27.2)]),     # TP1 (+)
+]
+
+
+def add_preroutes(board):
+    import gen_pcb  # coordinate helpers (board offset, bottom-view mirror)
+    for net, width, pts in PREROUTES:
+        ni = board.FindNet(net)
+        for (x0, y0), (x1, y1) in zip(pts, pts[1:]):
+            t = pcbnew.PCB_TRACK(board)
+            t.SetStart(gen_pcb.P(*gen_pcb.bv(x0, y0)))
+            t.SetEnd(gen_pcb.P(*gen_pcb.bv(x1, y1)))
+            t.SetWidth(pcbnew.FromMM(width))
+            t.SetLayer(pcbnew.B_Cu)
+            t.SetNet(ni)
+            t.SetLocked(True)
+            board.Add(t)
+
+
 def main():
     passes = int(sys.argv[1]) if len(sys.argv) > 1 else 30
     os.makedirs(OUT, exist_ok=True)
@@ -167,6 +208,7 @@ def main():
     board = pcbnew.LoadBoard(PCB)
     for t in list(board.GetTracks()):  # re-route from a clean slate
         board.Delete(t)
+    add_preroutes(board)
     export_dsn(board, dsn)
     route(dsn, ses, passes)
     assert pcbnew.ImportSpecctraSES(board, ses), "SES import failed"

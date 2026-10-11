@@ -34,11 +34,16 @@ BOARD = 30.0
 CORNER_R = 1.0
 HOLE = (27.0, 3.0)  # top view
 
+# Board sits where it was placed on the drawing sheet in KiCad (user edit
+# 2026-10-10); all local coordinates are relative to its top-left corner,
+# and the grid / drill-place origins are set there so (0,0) stays top-left.
+OFFSET = (111.1825, 56.0585)
+
 MM = pcbnew.FromMM
 
 
 def P(x, y):
-    return pcbnew.VECTOR2I(MM(x), MM(y))
+    return pcbnew.VECTOR2I(MM(x + OFFSET[0]), MM(y + OFFSET[1]))
 
 
 def bv(x, y):
@@ -56,38 +61,39 @@ LEDS = {
     "D10": (23.0, 4.0, "a"), "D11": (20.5, 6.5, "f"), "D12": (23.0, 9.0, "g"),
     "D13": (20.5, 11.5, "e"), "D14": (23.0, 14.0, "d"),
 }
-# LEDs stand alone in the digit area. Their 3.3 k resistors form one row of
-# vertical 0603s (1.6 mm pitch) between the digits and the 555, grouped
-# under the digit they feed so anode traces stay short and uncrossed.
-R_ROW_Y = 17.6
-R_ROW = {  # resistor: x (bottom view); pad toward the LEDs = anode side
-    # Single-sided order: f and e anodes leave their digit downward on the
-    # left, d/g/a anodes through the channel on the digit's right (nested,
-    # d innermost), so the row reads f e d g a per digit and nothing crosses.
-    "R4": 3.0, "R6": 4.6, "R7": 6.2, "R5": 7.8, "R3": 9.4,        # E1: f e d g a
-    "R9": 12.2, "R10": 13.8, "R11": 15.4, "R8": 17.0,              # C:  f e d a
-    "R13": 20.2, "R15": 21.8, "R16": 23.4, "R14": 25.0, "R12": 26.6,  # E2: f e d g a
-}
+# One current-limit resistor per digit (advisor review), vertical under the
+# digit centre: anode pad up toward the LEDs, LED_PWR pad down to the bus.
+DIGIT_R_Y = 17.0
+DIGIT_R = {"R3": 8.0, "R4": 15.0, "R5": 23.0}  # E1 (shifted right to leave room for Q1), C, E2
 # LED polarity for single-sided routing: cathodes on the left end of a/g/d
 # (180 deg) and the top end of f/e (270 deg) all meet at each digit's inner
-# left corner, where one LED_SINK trunk collects them. The spec's 0/90 deg puts
-# cathodes on opposite sides and forces sink/anode crossings on one layer.
+# left corner, where one GND trunk collects them; anodes fan out to the
+# digit resistor. The spec's 0/90 deg puts cathodes on opposite sides.
 LED_ROT_H, LED_ROT_V = 180, 270
 
 # --- everything else (bottom view x_bv, y, orientation deg) ----------------
 OTHERS = {
     # U1 at 270: pins 1-4 (GND, TRIG, OUT, RST) face up toward the LED field,
     # pins 5-8 (CV, THR, DIS, VCC) face the timing parts along the bottom edge.
+    # Single-sided topology (see tools/route.py PREROUTES): TH and GND leave
+    # under the body to its left end, VCC is a ring round the board edge.
     "U1": (15.0, 24.2, 270),
     "C2": (18.6, 25.7, 90),    # decoupling: centre 1.96 mm from pin 8, pad1 (VCC) at the pin-8 end
-    "R2": (15.0, 28.75, 0),    # DIS -> TH, under pins 7/6
-    "R1": (18.4, 28.75, 0),    # VCC -> DIS (DIS pad next to R2 DIS pad)
-    "C1": (11.6, 28.75, 0),    # TH -> GND
-    "C3": (11.2, 25.0, 90),    # CV (pin 5) -> GND
-    "TP1": (4.0, 26.4, 0),     # +
-    "TP2": (7.6, 26.4, 0),     # -
-    "TP3": (25.6, 26.0, 0),    # OUT probe
+    "R2": (15.0, 29.0, 0),     # DIS (right) -> TH (left), under pins 7/6
+    "R1": (18.6, 29.0, 0),     # DIS (left) -> VCC (right, up to the ring)
+    "C1": (11.0, 28.7, 180),   # TH (left, on the TH loop) -> GND (right, inside the loop)
+    "C3": (11.5, 25.3, 90),    # GND (top, at the GND lane end) -> CV (bottom, to pin 5)
+    "TP1": (24.5, 28.6, 0),    # + on the VCC ring
+    "TP2": (24.5, 24.6, 0),    # -
+    "TP3": (12.8, 19.2, 0),    # OUT probe on the OUT run
+    "R6": (9.9, 19.45, 0),     # Q1 base resistor
+    "Q1": (3.7, 18.0, 0),      # PNP: C right to the LED_PWR bus, E/B left
 }
+# parts whose rotation is chosen so a given pad faces a direction:
+# ref: (pad, axis, sign) -> that pad gets the smallest (sign -1) / largest (+1) coordinate
+ORIENT = {"R6": ("2", 0, +1), "Q1": ("3", 0, +1)}
+# bottom-silk labels: ref -> (text, dx, dy, size)
+TP_LABELS = {"TP1": ("+", 2.4, 0.0, 1.2), "TP2": ("\u2212", 2.4, 0.0, 1.2), "TP3": ("OUT", 0.0, -2.5, 1.0)}
 
 
 def export_netlist():
@@ -138,7 +144,7 @@ def add_logo(board):
     for x0, y0, x1, y1 in data["rects"]:
         poly.NewOutline()
         for x, y in ((x0, y0), (x1, y0), (x1, y1), (x0, y1)):
-            poly.Append(MM(x), MM(y))
+            poly.Append(MM(x + OFFSET[0]), MM(y + OFFSET[1]))
     poly.Simplify()   # union of all pixel rectangles
     poly.Fracture()   # holes -> bridged single outlines (PCB_SHAPE polys can't hold holes)
     n = 0
@@ -219,7 +225,7 @@ def place(fp, x_bv, y, angle):
 
 def pad_bv(fp, num):
     pos = fp.FindPadByNumber(num).GetPosition()
-    return (round(BOARD - pcbnew.ToMM(pos.x), 3), round(pcbnew.ToMM(pos.y), 3))
+    return (round(BOARD - (pcbnew.ToMM(pos.x) - OFFSET[0]), 3), round(pcbnew.ToMM(pos.y) - OFFSET[1], 3))
 
 
 def build():
@@ -263,33 +269,38 @@ def build():
         board.Add(fp)
         fps[ref] = fp
 
-    # standalone LEDs, then the resistor row
+    # standalone LEDs, then the per-digit resistors
     for ref, (x, y, seg) in LEDS.items():
         place(fps[ref], x, y, LED_ROT_H if seg in "agd" else LED_ROT_V)
-    for ref, x in R_ROW.items():
+    for ref, x in DIGIT_R.items():
         best = None
-        for a in (90, 270):  # put pin 2 (anode side) on the LED side of the row
-            place(fps[ref], x, R_ROW_Y, a)
+        for a in (90, 270):  # anode pad (2) up toward the digit
+            place(fps[ref], x, DIGIT_R_Y, a)
             if best is None or pad_bv(fps[ref], "2")[1] < best[0]:
                 best = (pad_bv(fps[ref], "2")[1], a)
-        place(fps[ref], x, R_ROW_Y, best[1])
+        place(fps[ref], x, DIGIT_R_Y, best[1])
 
     for ref, (x, y, a) in OTHERS.items():
+        if ref in ORIENT:
+            pad, axis, sign = ORIENT[ref]
+            a = max((0, 90, 180, 270), key=lambda r: (place(fps[ref], x, y, r),
+                                                     sign * pad_bv(fps[ref], pad)[axis])[1])
         place(fps[ref], x, y, a)
 
     # keychain hole stays a top-side (unflipped) NPTH
     fps["H1"].SetPosition(P(*HOLE))
 
+    ds = board.GetDesignSettings()
+    ds.SetAuxOrigin(P(0, 0))   # drill/place origin = board top-left
+    ds.SetGridOrigin(P(0, 0))
+
     add_outline(board)
     n_logo = add_logo(board)
 
     # bottom silkscreen labels for the pads (mirrored so they read from the bottom)
-    tp_lbl = {"TP1": "+", "TP2": "−", "TP3": "OUT"}
-    for ref, txt in tp_lbl.items():
+    for ref, (txt, dx, dy, size) in TP_LABELS.items():
         x, y, _ = OTHERS[ref]
-        size = 1.0 if ref == "TP3" else 1.2
-        add_text(board, txt, *bv(x, y + 2.1), pcbnew.B_SilkS,
-                 size=size, thick=0.2, mirrored=True)
+        add_text(board, txt, *bv(x + dx, y + dy), pcbnew.B_SilkS, size=size, thick=0.2, mirrored=True)
 
     pcbnew.SaveBoard(PCB, board)
     apply_rules()
