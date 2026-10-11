@@ -10,9 +10,11 @@ board is bottom-side, roundrect pads, rounded corners. So KiCad's native
 exporter/importer handle the file conversion and Konnect's
 `route_specctra_dsn` drives Freerouting (local, headless).
 """
+import json
 import math
 import os
 import re
+import subprocess
 import sys
 import time
 
@@ -29,7 +31,9 @@ JRE = os.path.expanduser("~/.local/share/freerouting/jdk-25.0.4.1+1-jre/Contents
 JAR = os.path.expanduser("~/.local/share/freerouting/freerouting-2.4.1.jar")
 
 BOARD, CORNER_R = 30000, 1000      # um
-EDGE_INSET = 100                   # Freerouting keeps 0.2 mm to the boundary; rules want 0.3 mm
+# EMI: keep autorouted copper >= 0.7 mm from the board edge (Freerouting adds its
+# 0.2 mm clearance to this inset); the long VCC ring is pre-routed at >= 1.0 mm.
+EDGE_INSET = 500
 # Single-sided: all copper on B.Cu with the parts; the top (logo) side stays
 # bare. F.Cu is switched off for the router and vias are disabled. Crossings
 # are solved by passing traces under the SOIC body or between 0603 pads.
@@ -169,17 +173,28 @@ def route(dsn, ses, passes):
 # under-body strip on other nets and leaves this link unrouted.
 PREROUTES = [
     # TH: pin 2 -> under the body -> out of its left end (loops round to pin 6 via C1/R2)
-    ("/TH", 0.2, [(15.635, 21.725), (15.635, 22.95), (15.285, 23.3), (12.0, 23.3)]),
+    ("/TH", 0.2, [(15.635, 21.725), (15.635, 22.95), (15.285, 23.3), (11.3, 23.3)]),   # -> C1 pad 1
     # GND: pin 1 -> under the body -> left end, beneath the TH lane, to C3/C1
-    ("GND", 0.3, [(16.905, 21.725), (16.905, 23.75), (16.555, 24.1), (12.0, 24.1)]),
-    # VCC ring: pin 4 -> up -> left -> round the board edge (chamfered corners) -> pin 8.
-    # It puts the LED field, Q1, OUT and pin 1 on the same side of every barrier.
-    ("VCC", 0.3, [(13.095, 21.725), (13.095, 20.45), (0.6, 20.45), (0.6, 1.6), (1.6, 0.6),
-                  (28.4, 0.6), (29.4, 1.6), (29.4, 26.2), (28.4, 27.2), (17.4, 27.2),
-                  (16.905, 26.705)]),
+    ("GND", 0.3, [(16.905, 21.725), (16.905, 23.75), (16.555, 24.1), (11.3, 24.1)]),  # -> C1 pad 2
+    # VCC ring: pin 4 -> up -> left -> round the board edge -> pin 8. It puts the LED
+    # field, Q1, OUT and pin 1 on the same side of every barrier. EMI: copper edge
+    # >= 1.0 mm from the board outline (centreline 1.15 mm), every corner 45 deg.
+    ("VCC", 0.3, [(13.095, 21.725), (13.095, 20.95), (12.595, 20.45), (1.65, 20.45), (1.15, 19.95),
+                  (1.15, 2.15), (2.15, 1.15), (27.85, 1.15), (28.85, 2.15), (28.85, 26.2),
+                  (27.85, 27.2), (17.4, 27.2), (16.905, 26.705)]),
     # stubs onto the ring (Freerouting will not join a fixed wire mid-segment)
-    ("VCC", 0.3, [(2.2, 18.95), (2.2, 20.45)]),     # Q1 emitter
+    ("VCC", 0.3, [(3.05, 18.95), (3.05, 20.45)]),   # Q1 emitter
     ("VCC", 0.3, [(24.5, 28.6), (24.5, 27.2)]),     # TP1 (+)
+    ("VCC", 0.3, [(19.5125, 28.75), (19.5125, 27.7), (19.0125, 27.2)]),  # R1 VCC pad, 45 deg join
+    # TH loop: C1 pad 1 -> round the left of C1/C3 -> R2 pad 2; pin 6 straight down to R2.
+    # 1.0 mm from the board edge; the pour on both sides guards this high-Z node.
+    ("/TH", 0.2, [(10.6, 22.84), (9.9, 23.54), (9.9, 28.4), (10.4, 28.9), (13.9, 28.9)]),
+    ("/TH", 0.2, [(14.365, 26.675), (14.365, 28.6)]),
+    # LED_PWR bus: Q1 collector -> R3 -> R4 -> R5 bottom pads, one straight 0.3 mm run
+    # (switched LED current: short, direct, no detours).
+    ("/LED_PWR", 0.3, [(6.05, 18.0), (23.0, 18.0)]),
+    # EMI: decoupling loop C2 <-> U1 pin 1 kept short and explicit (~2.4 mm), not left to the pour
+    ("GND", 0.3, [(16.905, 22.3), (17.3, 22.3), (18.6, 23.6), (18.6, 24.84)]),
 ]
 
 
@@ -198,6 +213,122 @@ def add_preroutes(board):
             board.Add(t)
 
 
+KICAD_CLI = "/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli"
+MITER_MAX_MM = 0.5     # chamfer leg length cap
+
+
+def _k(p):
+    return (p.x, p.y)
+
+
+def miter_corners(board):
+    """Replace every track corner of >= 90 deg (right angle or acute) by a 45 deg
+    chamfer. Returns undo records [(segA, endA, segB, endB, vertex, newseg)]."""
+    segs = [t for t in board.GetTracks() if t.GetClass() == "PCB_TRACK" and not t.IsLocked()]
+    pads = [p for fp in board.GetFootprints() for p in fp.Pads()]
+    at = {}
+    for s in [t for t in board.GetTracks() if t.GetClass() == "PCB_TRACK"]:
+        for end in ("S", "E"):
+            p = s.GetStart() if end == "S" else s.GetEnd()
+            at.setdefault((s.GetNetCode(), _k(p)), []).append((s, end))
+    done = []
+    for (net, v), ss in at.items():
+        if len(ss) != 2 or any(s.IsLocked() for s, _ in ss):
+            continue
+        vv = pcbnew.VECTOR2I(*v)
+        if any(p.GetNetCode() == net and p.HitTest(vv) for p in pads):
+            continue  # pad entry, not a free corner
+        (a, ea), (b, eb) = ss
+        pa = a.GetEnd() if ea == "S" else a.GetStart()   # far ends
+        pb = b.GetEnd() if eb == "S" else b.GetStart()
+        da = (pa.x - v[0], pa.y - v[1])
+        db = (pb.x - v[0], pb.y - v[1])
+        la, lb = math.hypot(*da), math.hypot(*db)
+        if la == 0 or lb == 0:
+            continue
+        cos_in = (da[0] * db[0] + da[1] * db[1]) / (la * lb)   # interior angle at v
+        if cos_in < -0.01:      # interior > ~90.5 deg -> bend < 90 deg: fine
+            continue
+        d = min(pcbnew.FromMM(MITER_MAX_MM), 0.4 * la, 0.4 * lb)
+        p1 = pcbnew.VECTOR2I(int(v[0] + da[0] / la * d), int(v[1] + da[1] / la * d))
+        p2 = pcbnew.VECTOR2I(int(v[0] + db[0] / lb * d), int(v[1] + db[1] / lb * d))
+        (a.SetStart if ea == "S" else a.SetEnd)(p1)
+        (b.SetStart if eb == "S" else b.SetEnd)(p2)
+        n = pcbnew.PCB_TRACK(board)
+        n.SetStart(p1)
+        n.SetEnd(p2)
+        n.SetWidth(min(a.GetWidth(), b.GetWidth()))
+        n.SetLayer(a.GetLayer())
+        n.SetNetCode(net)
+        board.Add(n)
+        done.append((a, ea, b, eb, vv, n))
+    return done
+
+
+def drc_positions(path):
+    """kicad-cli DRC on a saved board -> list of violation item positions (nm)."""
+    out = path + ".drc.json"
+    subprocess.run([KICAD_CLI, "pcb", "drc", "--format", "json", "-o", out, path], capture_output=True)
+    d = json.load(open(out))
+    os.remove(out)
+    pts = []
+    for v in d["violations"]:
+        for it in v["items"]:
+            pts.append((pcbnew.FromMM(it["pos"]["x"]), pcbnew.FromMM(it["pos"]["y"])))
+    return pts, len(d["unconnected_items"])
+
+
+def miter_with_drc(board):
+    """Mitre corners, then undo any miter that DRC flags (up to 4 passes)."""
+    done = miter_corners(board)
+    total = len(done)
+    for _ in range(4):
+        pcbnew.SaveBoard(PCB, board)
+        pts, _unc = drc_positions(PCB)
+        bad = []
+        for rec in done:
+            n = rec[5]
+            bb = n.GetBoundingBox()
+            bb.Inflate(pcbnew.FromMM(0.6))
+            if any(bb.Contains(pcbnew.VECTOR2I(x, y)) for x, y in pts):
+                bad.append(rec)
+        if not bad:
+            break
+        for a, ea, b, eb, v, n in bad:
+            (a.SetStart if ea == "S" else a.SetEnd)(v)
+            (b.SetStart if eb == "S" else b.SetEnd)(v)
+            board.Remove(n)
+            done.remove((a, ea, b, eb, v, n))
+    return total, len(done)
+
+
+def add_gnd_pour(board):
+    """B.Cu GND pour in all free space: return path next to every trace, no
+    floating islands (antennas), thermal spokes so pads hand-solder."""
+    for z in list(board.Zones()):
+        board.Remove(z)
+    bb = board.GetBoardEdgesBoundingBox()
+    z = pcbnew.ZONE(board)
+    z.SetLayer(pcbnew.B_Cu)
+    z.SetNetCode(board.FindNet("GND").GetNetCode())
+    z.SetZoneName("GND_POUR")
+    outline = z.Outline()
+    outline.NewOutline()
+    for x, y in ((bb.GetLeft(), bb.GetTop()), (bb.GetRight(), bb.GetTop()),
+                 (bb.GetRight(), bb.GetBottom()), (bb.GetLeft(), bb.GetBottom())):
+        outline.Append(x, y)
+    z.SetLocalClearance(pcbnew.FromMM(0.3))
+    z.SetMinThickness(pcbnew.FromMM(0.25))
+    z.SetPadConnection(pcbnew.ZONE_CONNECTION_THERMAL)
+    z.SetThermalReliefGap(pcbnew.FromMM(0.3))
+    z.SetThermalReliefSpokeWidth(pcbnew.FromMM(0.4))
+    z.SetIslandRemovalMode(pcbnew.ISLAND_REMOVAL_MODE_ALWAYS)
+    board.Add(z)
+    pcbnew.ZONE_FILLER(board).Fill(board.Zones())
+    area = sum(zz.GetFilledArea() for zz in board.Zones()) / 1e12  # nm^2 -> mm^2
+    return area
+
+
 def main():
     passes = int(sys.argv[1]) if len(sys.argv) > 1 else 30
     os.makedirs(OUT, exist_ok=True)
@@ -208,6 +339,8 @@ def main():
     board = pcbnew.LoadBoard(PCB)
     for t in list(board.GetTracks()):  # re-route from a clean slate
         board.Delete(t)
+    for z in list(board.Zones()):      # pour is rebuilt after routing
+        board.Remove(z)
     add_preroutes(board)
     export_dsn(board, dsn)
     route(dsn, ses, passes)
@@ -223,6 +356,10 @@ def main():
                 t.SetWidth(want)
                 widened += 1
     print(f"widened {widened} neck-down segments to net-class width")
+    total, kept = miter_with_drc(board)
+    print(f"mitred {kept}/{total} corners >= 90 deg to 45 deg ({total - kept} reverted by DRC)")
+    area = add_gnd_pour(board)
+    print(f"GND pour on B.Cu: {area:.1f} mm^2 filled")
     pcbnew.SaveBoard(PCB, board)
     tracks = list(board.GetTracks())
     vias = [t for t in tracks if t.GetClass() == "PCB_VIA"]

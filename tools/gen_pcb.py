@@ -79,15 +79,15 @@ OTHERS = {
     # under the body to its left end, VCC is a ring round the board edge.
     "U1": (15.0, 24.2, 270),
     "C2": (18.6, 25.7, 90),    # decoupling: centre 1.96 mm from pin 8, pad1 (VCC) at the pin-8 end
-    "R2": (15.0, 29.0, 0),     # DIS (right) -> TH (left), under pins 7/6
-    "R1": (18.6, 29.0, 0),     # DIS (left) -> VCC (right, up to the ring)
-    "C1": (11.0, 28.7, 180),   # TH (left, on the TH loop) -> GND (right, inside the loop)
-    "C3": (11.5, 25.3, 90),    # GND (top, at the GND lane end) -> CV (bottom, to pin 5)
+    "R2": (15.0, 28.75, 0),    # DIS (right) -> TH (left), under pins 7/6
+    "R1": (18.6, 28.75, 0),    # DIS (left) -> VCC (right, up to the ring)
+    "C1": (11.0, 23.7, 270),   # TH (top, TH lane end) -> GND (bottom, GND lane end): ~1 mm timing-cap loop
+    "C3": (11.5, 27.05, 90),   # GND (top, from C1) -> CV (bottom, to pin 5)
     "TP1": (24.5, 28.6, 0),    # + on the VCC ring
     "TP2": (24.5, 24.6, 0),    # -
     "TP3": (12.8, 19.2, 0),    # OUT probe on the OUT run
     "R6": (9.9, 19.45, 0),     # Q1 base resistor
-    "Q1": (3.7, 18.0, 0),      # PNP: C right to the LED_PWR bus, E/B left
+    "Q1": (4.55, 18.0, 0),     # PNP: C right to the LED_PWR bus, E/B left (clear of the 1 mm VCC ring)
 }
 # parts whose rotation is chosen so a given pad faces a direction:
 # ref: (pad, axis, sign) -> that pad gets the smallest (sign -1) / largest (+1) coordinate
@@ -190,7 +190,8 @@ RULES = {
 }
 NETCLASSES = {  # name: (track, clearance, via dia, via drill, net patterns)
     "Default": (0.2, 0.2, 0.6, 0.3, []),
-    "Power": (0.3, 0.2, 0.6, 0.3, ["VCC", "GND"]),
+    # LED_PWR carries the switched LED current: wide, low-inductance like the rails
+    "Power": (0.3, 0.2, 0.6, 0.3, ["VCC", "GND", "/LED_PWR"]),
 }
 
 
