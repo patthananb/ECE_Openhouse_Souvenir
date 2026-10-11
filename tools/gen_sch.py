@@ -13,7 +13,7 @@ import sys
 import uuid
 
 sys.path.insert(0, os.path.dirname(__file__))
-from parts import PARTS  # noqa: E402
+from parts import DIGITS, PARTS  # noqa: E402
 
 KICAD_SYM = os.environ.get(
     "KICAD_SYMBOL_DIR",
@@ -113,7 +113,8 @@ class Sheet:
         ptxt = ""
         for k, v, (ox, oy), hide in props:
             just = "(justify left)" if k in ("Reference", "Value") and not ref.startswith("#") else ""
-            ptxt += (f'\t\t(property "{k}" "{v}"\n\t\t\t(at {snap(x + ox)} {snap(y + oy)} 0)\n'
+            fa = 90 if angle in (90, 270) else 0  # keeps field text horizontal on rotated parts
+            ptxt += (f'\t\t(property "{k}" "{v}"\n\t\t\t(at {snap(x + ox)} {snap(y + oy)} {fa})\n'
                      f'\t\t\t(effects\n\t\t\t\t(font\n\t\t\t\t\t(size 1.27 1.27)\n\t\t\t\t)\n'
                      f'\t\t\t\t{just}\n\t\t\t\t{"(hide yes)" if hide else ""}\n\t\t\t)\n\t\t)\n')
         _, pins = self.libs[lib_id]
@@ -217,7 +218,7 @@ def build():
     s.connect(u1, "6", "TH")
     s.connect(u1, "2", "TH")
     s.connect(u1, "5", "CV")
-    s.connect(u1, "3", "LED_SINK")
+    s.connect(u1, "3", "OUT")
 
     # timing network, left of U1
     for ref, x, top, bot in (("R1", 18, "VCC", "DIS"), ("R2", 23, "DIS", "TH"), ("C1", 28, "TH", "GND")):
@@ -232,7 +233,7 @@ def build():
         s.connect(sym, "2", "GND")
 
     # test pads
-    for ref, x, net in (("TP1", 66, "VCC"), ("TP2", 71, "GND"), ("TP3", 76, "LED_SINK")):
+    for ref, x, net in (("TP1", 66, "VCC"), ("TP2", 71, "GND"), ("TP3", 76, "OUT")):
         sym = s.part(ref, x * G, 29 * G, ref_off=(2.54, -3.81), val_off=(2.54, -1.27))
         s.connect(sym, "1", net)
 
@@ -245,22 +246,38 @@ def build():
         s.wire(p0, p1)
         s.flag(net, p1)
 
-    # --- 14 LED branches ------------------------------------------------------
-    for k in range(1, 15):
-        x = (12 + 6 * (k - 1)) * G
-        r = s.part(f"R{k + 2}", x, 50 * G)
-        d = s.part(f"D{k}", x, 56 * G, angle=90, ref_off=(2.54, -0.635), val_off=(2.54, 1.905), hide_val=True)
-        s.connect(r, "1", "VCC")
-        s.join(r, "2", d, "2")      # R -> anode
-        s.connect(d, "1", "LED_SINK")  # cathode -> sink
+    # --- LED driver: PNP high-side switch, on while OUT is LOW ----------------
+    # Q1 rotated 180 deg: emitter up to VCC, collector down to the LEDs, base on the right
+    q1 = s.part("Q1", 20 * G, 44 * G, angle=180, ref_off=(-11.43, -1.27), val_off=(-11.43, 1.27))
+    r6 = s.part("R6", 26 * G, 44 * G, angle=90, ref_off=(-1.27, -2.54), val_off=(-1.27, 3.81))
+    s.connect(r6, "2", "OUT")
+    s.join(r6, "1", q1, "1")         # base resistor -> B
+    s.connect(q1, "2", "VCC")        # E
+    s.connect(q1, "3", "LED_PWR")    # C
 
-    s.text("Astable 555, LEDs lit while OUT is LOW (discharge phase).\n"
+    # --- one current-limit resistor per digit, LEDs in parallel to GND --------
+    x = 30
+    for digit, (rref, leds) in DIGITS.items():
+        r = s.part(rref, (x + 2 * len(leds)) * G, 48 * G)
+        s.connect(r, "1", "LED_PWR")
+        s.connect(r, "2", f"A_{digit}")
+        for k in leds:
+            d = s.part(f"D{k}", x * G, 58 * G, angle=90, ref_off=(-4.445, 0.635), val_off=(-4.445, 2.54),
+                       hide_val=True)
+            s.connect(d, "2", f"A_{digit}")   # anode
+            s.connect(d, "1", "GND")          # cathode
+            x += 5
+        x += 4
+
+    s.text("Astable 555. Q1 (PNP) turns on while OUT is LOW (discharge phase).\n"
            "t_on  = 0.693 * R2 * C1          = 83 ms\n"
            "t_off = 0.693 * (R1 + R2) * C1   = 776 ms\n"
            "f = 1.16 Hz, LED duty 9.7 %\n"
-           "I_LED = (VCC - Vf - V_OL) / 3.3k = 0.4 mA @3.3 V ... 0.9 mA @5 V each",
+           "I_digit = (VCC - Vce_sat - Vf) / R:  E 680R, C 820R\n"
+           "  -> ~0.4 mA @3.3 V ... ~0.9 mA @5 V average per LED (shared, unballasted)\n"
+           "Q1 base: (VCC - Veb) / 4.7k = 0.55 ... 0.9 mA, forced beta >= 10",
            12 * G, 14 * G)
-    s.text("D1-D14 placed on BOTTOM side spelling \"ECE\" (7-segment layout).", 12 * G, 66 * G)
+    s.text("D1-D14 placed on BOTTOM side spelling \"ECE\" (7-segment layout).", 30 * G, 66 * G)
     return s
 
 

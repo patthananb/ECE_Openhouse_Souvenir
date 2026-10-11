@@ -976,6 +976,235 @@
 			)
 			(embedded_fonts no)
 		)
+		(symbol "Transistor_BJT:Q_PNP_BEC"
+			(pin_names
+				(offset 0)
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "Q"
+				(at 5.08 1.27 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Value" "Q_PNP_BEC"
+				(at 5.08 -1.27 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Footprint" ""
+				(at 5.08 2.54 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Description" "PNP transistor, base/emitter/collector"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Sim.Device" "PNP"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Sim.Pins" "1=B 2=E 3=C"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_keywords" "BJT"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "Q_PNP_BEC_0_1"
+				(polyline
+					(pts
+						(xy -2.54 0) (xy 0.635 0)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0.635 1.905) (xy 0.635 -1.905)
+					)
+					(stroke
+						(width 0.508)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0.635 0.635) (xy 2.54 2.54)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0.635 -0.635) (xy 2.54 -2.54)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(circle
+					(center 1.27 0)
+					(radius 2.8194)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 2.286 -1.778) (xy 1.778 -2.286) (xy 1.27 -1.27) (xy 2.286 -1.778)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type outline)
+					)
+				)
+			)
+			(symbol "Q_PNP_BEC_1_1"
+				(pin input line
+					(at -5.08 0 0)
+					(length 2.54)
+					(name "B"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 2.54 -5.08 90)
+					(length 2.54)
+					(name "E"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 2.54 5.08 270)
+					(length 2.54)
+					(name "C"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
 		(symbol "power:GND"
 			(power global)
 			(pin_numbers
@@ -1348,7 +1577,7 @@
 	)
 	(text "D1-D14 placed on BOTTOM side spelling \"ECE\" (7-segment layout)."
 		(exclude_from_sim no)
-		(at 30.48 167.64 0)
+		(at 76.2 167.64 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -1357,7 +1586,7 @@
 		)
 		(uuid "637dc322-aade-505d-97cb-413c4ab78fbf")
 	)
-	(text "Astable 555, LEDs lit while OUT is LOW (discharge phase).\nt_on  = 0.693 * R2 * C1          = 83 ms\nt_off = 0.693 * (R1 + R2) * C1   = 776 ms\nf = 1.16 Hz, LED duty 9.7 %\nI_LED = (VCC - Vf - V_OL) / 3.3k = 0.4 mA @3.3 V ... 0.9 mA @5 V each"
+	(text "Astable 555. Q1 (PNP) turns on while OUT is LOW (discharge phase).\nt_on  = 0.693 * R2 * C1          = 83 ms\nt_off = 0.693 * (R1 + R2) * C1   = 776 ms\nf = 1.16 Hz, LED duty 9.7 %\nI_digit = (VCC - Vce_sat - Vf) / R:  E 680R, C 820R\n  -> ~0.4 mA @3.3 V ... ~0.9 mA @5 V average per LED (shared, unballasted)\nQ1 base: (VCC - Veb) / 4.7k = 0.55 ... 0.9 mA, forced beta >= 10"
 		(exclude_from_sim no)
 		(at 30.48 35.56 0)
 		(effects
@@ -1366,27 +1595,37 @@
 			)
 			(justify left bottom)
 		)
-		(uuid "a054ffc3-bdfd-5c62-b57b-13bf376c1323")
+		(uuid "a0aa6de7-d68d-5325-9deb-2cf646e449e4")
 	)
 	(wire
 		(pts
-			(xy 137.16 146.05) (xy 137.16 148.59)
+			(xy 101.6 143.51) (xy 101.6 140.97)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "02ee1d20-7db6-5a1e-8aef-999ac82a05dc")
+		(uuid "00d5e347-b53a-51cc-b177-50ea2eee8bf4")
 	)
 	(wire
 		(pts
-			(xy 106.68 123.19) (xy 106.68 120.65)
+			(xy 236.22 125.73) (xy 236.22 128.27)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "03ed3884-b3e9-5413-b41a-795a1114932a")
+		(uuid "0132aefe-68cb-588b-90d5-4599ae2427cb")
+	)
+	(wire
+		(pts
+			(xy 149.86 151.13) (xy 149.86 153.67)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "021cb1d0-a86c-5e88-bfa6-baa9b8c7dd94")
 	)
 	(wire
 		(pts
@@ -1400,13 +1639,63 @@
 	)
 	(wire
 		(pts
-			(xy 45.72 146.05) (xy 45.72 148.59)
+			(xy 76.2 143.51) (xy 76.2 140.97)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "09eaa702-1925-5ebe-b852-3f1bf5cda2fe")
+		(uuid "1044d21d-2c29-51da-8c12-181602d9a206")
+	)
+	(wire
+		(pts
+			(xy 210.82 151.13) (xy 210.82 153.67)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "1311fa9c-f4ca-5dbf-803f-6bad402e0290")
+	)
+	(wire
+		(pts
+			(xy 236.22 143.51) (xy 236.22 140.97)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "1b73e34a-09e1-5f35-8cce-c610989070e8")
+	)
+	(wire
+		(pts
+			(xy 76.2 151.13) (xy 76.2 153.67)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "1c94fdd6-bb73-5202-b283-4afca882d927")
+	)
+	(wire
+		(pts
+			(xy 236.22 118.11) (xy 236.22 115.57)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "25c69cb3-3543-5b36-964b-c6355afa139f")
+	)
+	(wire
+		(pts
+			(xy 248.92 143.51) (xy 248.92 140.97)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "26691858-127b-501b-88b1-86101f67a5a8")
 	)
 	(wire
 		(pts
@@ -1430,23 +1719,13 @@
 	)
 	(wire
 		(pts
-			(xy 60.96 146.05) (xy 60.96 148.59)
+			(xy 127 143.51) (xy 127 140.97)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "2cf7fb96-b73d-5bf1-be92-c77847758488")
-	)
-	(wire
-		(pts
-			(xy 121.92 146.05) (xy 121.92 148.59)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "2e18a8be-3ce2-5bf9-b422-af7f8a68fa14")
+		(uuid "2b79b9a2-e03e-57a9-ad4f-3877f0de5570")
 	)
 	(wire
 		(pts
@@ -1460,13 +1739,13 @@
 	)
 	(wire
 		(pts
-			(xy 198.12 130.81) (xy 198.12 138.43)
+			(xy 88.9 143.51) (xy 88.9 140.97)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "310f599a-e71e-5619-8cdb-35e2d8d199c8")
+		(uuid "300256b5-80d0-5184-b04a-b4dcafae61fd")
 	)
 	(wire
 		(pts
@@ -1480,16 +1759,6 @@
 	)
 	(wire
 		(pts
-			(xy 182.88 123.19) (xy 182.88 120.65)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "36ea31e6-aca9-5ef6-aa62-6dfedd5685ea")
-	)
-	(wire
-		(pts
 			(xy 213.36 73.66) (xy 220.98 73.66)
 		)
 		(stroke
@@ -1500,16 +1769,6 @@
 	)
 	(wire
 		(pts
-			(xy 121.92 123.19) (xy 121.92 120.65)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "3a9360bd-e539-5c9d-9cfc-3ac3f799c061")
-	)
-	(wire
-		(pts
 			(xy 71.12 80.01) (xy 71.12 82.55)
 		)
 		(stroke
@@ -1517,26 +1776,6 @@
 			(type default)
 		)
 		(uuid "417c70f4-e024-5720-880f-b797f302e417")
-	)
-	(wire
-		(pts
-			(xy 198.12 123.19) (xy 198.12 120.65)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "459ab0d7-fcb8-5bba-95a6-dfcb9b55698a")
-	)
-	(wire
-		(pts
-			(xy 198.12 146.05) (xy 198.12 148.59)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "4d8e2484-8e63-5816-9f3d-667f06c09c81")
 	)
 	(wire
 		(pts
@@ -1560,13 +1799,13 @@
 	)
 	(wire
 		(pts
-			(xy 45.72 130.81) (xy 45.72 138.43)
+			(xy 187.96 151.13) (xy 187.96 153.67)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "51d125e4-b923-55bf-9152-ac3a3349af64")
+		(uuid "528951e0-6f35-505c-a713-0b472f863c56")
 	)
 	(wire
 		(pts
@@ -1580,13 +1819,33 @@
 	)
 	(wire
 		(pts
-			(xy 76.2 130.81) (xy 76.2 138.43)
+			(xy 127 151.13) (xy 127 153.67)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "55edda82-0c08-5ad3-8832-efce6fc2ce40")
+		(uuid "5653ca5a-969b-591d-8b16-d46662235594")
+	)
+	(wire
+		(pts
+			(xy 248.92 151.13) (xy 248.92 153.67)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "56c75a6a-1d37-550b-abf6-db22ec9a7845")
+	)
+	(wire
+		(pts
+			(xy 223.52 151.13) (xy 223.52 153.67)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5a1e3dce-78f6-5c79-808f-804ec57623d9")
 	)
 	(wire
 		(pts
@@ -1610,43 +1869,33 @@
 	)
 	(wire
 		(pts
-			(xy 30.48 130.81) (xy 30.48 138.43)
+			(xy 101.6 118.11) (xy 101.6 115.57)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "6a112c66-4527-5470-8ed7-2c9326b360fc")
+		(uuid "66f15f02-a877-52be-adb1-0ca0bc7773ea")
 	)
 	(wire
 		(pts
-			(xy 76.2 146.05) (xy 76.2 148.59)
+			(xy 162.56 151.13) (xy 162.56 153.67)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "6d68578c-a7b6-56d9-8490-29faee3e34db")
+		(uuid "697a9e43-a802-536e-8883-9bee60af35e0")
 	)
 	(wire
 		(pts
-			(xy 60.96 123.19) (xy 60.96 120.65)
+			(xy 62.23 111.76) (xy 55.88 111.76)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "74fb20be-7588-51bc-8d16-b5917377a690")
-	)
-	(wire
-		(pts
-			(xy 76.2 123.19) (xy 76.2 120.65)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "75d570aa-ba8a-5240-b991-a16c53267f2c")
+		(uuid "6ab8e447-6931-56e7-bc36-ef3199f21026")
 	)
 	(wire
 		(pts
@@ -1660,6 +1909,16 @@
 	)
 	(wire
 		(pts
+			(xy 101.6 125.73) (xy 101.6 128.27)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7cf3e41a-a641-52b0-872a-f8ad61ac592f")
+	)
+	(wire
+		(pts
 			(xy 111.76 76.2) (xy 114.3 76.2)
 		)
 		(stroke
@@ -1670,43 +1929,63 @@
 	)
 	(wire
 		(pts
-			(xy 167.64 130.81) (xy 167.64 138.43)
+			(xy 48.26 106.68) (xy 48.26 104.14)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "7f0eb868-e5d2-58e4-bf14-01a3dc2dcf0f")
+		(uuid "81c97ac2-beac-5a95-aef6-4fb14b4696ce")
 	)
 	(wire
 		(pts
-			(xy 152.4 123.19) (xy 152.4 120.65)
+			(xy 162.56 143.51) (xy 162.56 140.97)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "80b9a505-05ec-5a13-9f47-8323ee7913bc")
+		(uuid "83fc2278-4069-557a-8db8-a3b57d1a1a4c")
 	)
 	(wire
 		(pts
-			(xy 137.16 123.19) (xy 137.16 120.65)
+			(xy 101.6 151.13) (xy 101.6 153.67)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "89cfef97-0828-5b5d-8cae-2361cee61706")
+		(uuid "85470d93-3df1-520a-b835-b23369af802d")
 	)
 	(wire
 		(pts
-			(xy 45.72 123.19) (xy 45.72 120.65)
+			(xy 223.52 143.51) (xy 223.52 140.97)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "9ff88f70-8059-5bb0-81c8-f6f85131211e")
+		(uuid "8952f9a4-f39d-5073-9156-fc0d4dfe92af")
+	)
+	(wire
+		(pts
+			(xy 69.85 111.76) (xy 72.39 111.76)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8eccff20-079a-586a-a5a0-357a6f0d4cd9")
+	)
+	(wire
+		(pts
+			(xy 48.26 116.84) (xy 48.26 119.38)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9a07a3a6-51a1-55b2-9f0a-ffaad4bf0a54")
 	)
 	(wire
 		(pts
@@ -1717,26 +1996,6 @@
 			(type default)
 		)
 		(uuid "a2a05f50-28ee-54b2-a34a-094c5de6533a")
-	)
-	(wire
-		(pts
-			(xy 167.64 146.05) (xy 167.64 148.59)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "a9836d35-90c6-5185-b086-37b362385305")
-	)
-	(wire
-		(pts
-			(xy 152.4 130.81) (xy 152.4 138.43)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "ad16e395-aa13-50b2-8bb6-5f2c3c9ef0d1")
 	)
 	(wire
 		(pts
@@ -1760,6 +2019,16 @@
 	)
 	(wire
 		(pts
+			(xy 175.26 143.51) (xy 175.26 140.97)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b68692a4-f3ac-5e45-bde1-7c0dee4a6bf1")
+	)
+	(wire
+		(pts
 			(xy 132.08 72.39) (xy 132.08 69.85)
 		)
 		(stroke
@@ -1770,13 +2039,13 @@
 	)
 	(wire
 		(pts
-			(xy 167.64 123.19) (xy 167.64 120.65)
+			(xy 210.82 143.51) (xy 210.82 140.97)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "b85542f9-28b9-5b17-8204-6e573d78474a")
+		(uuid "ba07e7e1-89f4-5a73-a389-95d2f51afcef")
 	)
 	(wire
 		(pts
@@ -1790,36 +2059,6 @@
 	)
 	(wire
 		(pts
-			(xy 228.6 130.81) (xy 228.6 138.43)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "bfd06259-354e-5d29-958a-78dc3e926e21")
-	)
-	(wire
-		(pts
-			(xy 213.36 123.19) (xy 213.36 120.65)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "c0e8fa93-0066-5eee-a6ce-2dfdeff4d4f7")
-	)
-	(wire
-		(pts
-			(xy 30.48 146.05) (xy 30.48 148.59)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "c74010a6-2490-5572-92da-4340f2329cae")
-	)
-	(wire
-		(pts
 			(xy 144.78 72.39) (xy 144.78 69.85)
 		)
 		(stroke
@@ -1830,43 +2069,23 @@
 	)
 	(wire
 		(pts
-			(xy 152.4 146.05) (xy 152.4 148.59)
+			(xy 236.22 151.13) (xy 236.22 153.67)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "c9a6b138-ea47-554b-a636-c3ab164810da")
+		(uuid "ccec9896-899b-5ab9-ad8d-646212321519")
 	)
 	(wire
 		(pts
-			(xy 91.44 146.05) (xy 91.44 148.59)
+			(xy 187.96 143.51) (xy 187.96 140.97)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "cbb012c8-b07f-52fd-b4a9-569251e6b86c")
-	)
-	(wire
-		(pts
-			(xy 106.68 146.05) (xy 106.68 148.59)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "ceed7edf-869d-5ca1-ad40-259828f54f47")
-	)
-	(wire
-		(pts
-			(xy 137.16 130.81) (xy 137.16 138.43)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "cef1860e-87c5-5913-87e2-753e84be5ce2")
+		(uuid "cd28bb63-0488-583d-9ed7-9da1c62a6a22")
 	)
 	(wire
 		(pts
@@ -1880,93 +2099,93 @@
 	)
 	(wire
 		(pts
-			(xy 182.88 146.05) (xy 182.88 148.59)
+			(xy 88.9 151.13) (xy 88.9 153.67)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "d498b6a5-aa51-5ab1-a4c9-acd23d78be4b")
+		(uuid "d4097c55-2d26-56a6-a6a3-3f7c8f158128")
 	)
 	(wire
 		(pts
-			(xy 91.44 123.19) (xy 91.44 120.65)
+			(xy 149.86 143.51) (xy 149.86 140.97)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "d6bf2e9a-ead7-511a-a4b7-24bb43307f60")
+		(uuid "d5c2e6cd-6511-5bbc-bda9-ddd3dc30b7dc")
 	)
 	(wire
 		(pts
-			(xy 106.68 130.81) (xy 106.68 138.43)
+			(xy 170.18 118.11) (xy 170.18 115.57)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "d8534b3b-b54c-531b-90b9-936920ac770d")
+		(uuid "da06bd02-952f-5943-aac8-bcc522c63495")
 	)
 	(wire
 		(pts
-			(xy 213.36 130.81) (xy 213.36 138.43)
+			(xy 175.26 151.13) (xy 175.26 153.67)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "e3f2d211-3750-52d7-b6b7-a973e9056702")
+		(uuid "dc97e4a6-f554-5491-8416-7b67aceceb45")
 	)
 	(wire
 		(pts
-			(xy 30.48 123.19) (xy 30.48 120.65)
+			(xy 170.18 125.73) (xy 170.18 128.27)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "e68334cb-f230-571a-94be-9c8c3100d93e")
+		(uuid "e26abe5d-4e35-5496-8e23-edc216032947")
 	)
 	(wire
 		(pts
-			(xy 182.88 130.81) (xy 182.88 138.43)
+			(xy 114.3 143.51) (xy 114.3 140.97)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "e6b5067c-5f1f-5af5-b393-1a05496ba075")
+		(uuid "e3a9bd3b-4946-5f35-85f5-3451b667b01d")
 	)
 	(wire
 		(pts
-			(xy 213.36 146.05) (xy 213.36 148.59)
+			(xy 261.62 143.51) (xy 261.62 140.97)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "e7f8a001-50ea-5bc1-bca8-ad1234928cd1")
+		(uuid "e508f443-0673-58d9-91e9-02019a4cb6b7")
 	)
 	(wire
 		(pts
-			(xy 228.6 146.05) (xy 228.6 148.59)
+			(xy 114.3 151.13) (xy 114.3 153.67)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "ed1edc72-e238-5a85-872f-61104a31a023")
+		(uuid "ea837530-77ef-5c83-9b30-1e3600dc4d39")
 	)
 	(wire
 		(pts
-			(xy 121.92 130.81) (xy 121.92 138.43)
+			(xy 261.62 151.13) (xy 261.62 153.67)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "ee37e7c5-194e-507c-a620-fe35b50d8225")
+		(uuid "f128070a-8f88-580a-895c-9f4c71f8b9a2")
 	)
 	(wire
 		(pts
@@ -1990,36 +2209,6 @@
 	)
 	(wire
 		(pts
-			(xy 228.6 123.19) (xy 228.6 120.65)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "f7517fc1-35c8-5402-bd3f-5d1860a42be1")
-	)
-	(wire
-		(pts
-			(xy 60.96 130.81) (xy 60.96 138.43)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "f8649de3-ebd3-561e-a1f1-5d17ca9b32bc")
-	)
-	(wire
-		(pts
-			(xy 91.44 130.81) (xy 91.44 138.43)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "fa67d0e6-b4fa-5875-b62a-2d8c7aea6d59")
-	)
-	(wire
-		(pts
 			(xy 91.44 73.66) (xy 88.9 73.66)
 		)
 		(stroke
@@ -2027,6 +2216,36 @@
 			(type default)
 		)
 		(uuid "fea03d8f-6ada-57aa-8c6c-4896a5898176")
+	)
+	(label "A_E2"
+		(at 248.92 140.97 90)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "0b516e2b-1234-5c19-885b-9646ad178dd0")
+	)
+	(label "OUT"
+		(at 114.3 76.2 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "0fa23bff-4845-5894-a7f0-e308a2ad9862")
+	)
+	(label "A_E1"
+		(at 76.2 140.97 90)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "1c11d96d-d129-5538-8912-ba7348953623")
 	)
 	(label "CV"
 		(at 132.08 69.85 90)
@@ -2038,15 +2257,15 @@
 		)
 		(uuid "1ef26601-f1d2-5483-8e98-b6a8c42417ef")
 	)
-	(label "LED_SINK"
-		(at 121.92 148.59 270)
+	(label "A_E2"
+		(at 236.22 140.97 90)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify right bottom)
+			(justify left bottom)
 		)
-		(uuid "2d641a24-432a-58de-bd38-65e38cdf5c22")
+		(uuid "2a4f2050-03e7-57be-aeee-9c17223d939a")
 	)
 	(label "DIS"
 		(at 88.9 73.66 180)
@@ -2058,35 +2277,85 @@
 		)
 		(uuid "2e004527-088b-5ea0-8fca-b3f4379f82a0")
 	)
-	(label "LED_SINK"
-		(at 137.16 148.59 270)
+	(label "A_E1"
+		(at 127 140.97 90)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify right bottom)
+			(justify left bottom)
 		)
-		(uuid "3bbb5510-a10c-51c7-b4de-315ad309f699")
+		(uuid "362866ed-fa2f-583c-b220-7cbd0bc0aeb1")
 	)
-	(label "LED_SINK"
-		(at 182.88 148.59 270)
+	(label "A_E2"
+		(at 210.82 140.97 90)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify right bottom)
+			(justify left bottom)
 		)
-		(uuid "477dd4f0-27de-5b01-8563-a0fbed15f602")
+		(uuid "43a02ac4-b3b5-5116-b9b9-2cc9c60d8c09")
 	)
-	(label "LED_SINK"
-		(at 213.36 148.59 270)
+	(label "OUT"
+		(at 72.39 111.76 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "50892aba-ab01-5ef9-a6b5-857a19949ab8")
+	)
+	(label "A_C"
+		(at 149.86 140.97 90)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "6b18ea9a-0dd8-5ec2-916e-fc10c1b5347b")
+	)
+	(label "A_E1"
+		(at 114.3 140.97 90)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "6dcf6f1d-f055-5d73-91c6-183408aa8956")
+	)
+	(label "A_C"
+		(at 170.18 128.27 270)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
 			(justify right bottom)
 		)
-		(uuid "539e603d-a3d3-5428-86ae-a73c1684047a")
+		(uuid "735c0460-a47e-5d09-b733-99ee76193c97")
+	)
+	(label "A_E1"
+		(at 101.6 128.27 270)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "75d16708-061e-57c9-af00-fdd4366b0bd7")
+	)
+	(label "A_E2"
+		(at 223.52 140.97 90)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "7ef40ef9-4b47-5641-869b-24e9d0f6d5e4")
 	)
 	(label "TH"
 		(at 71.12 69.85 90)
@@ -2098,65 +2367,25 @@
 		)
 		(uuid "7f57eab7-75a1-56c4-a780-799b33d4bf09")
 	)
-	(label "LED_SINK"
-		(at 60.96 148.59 270)
+	(label "A_E2"
+		(at 261.62 140.97 90)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify right bottom)
+			(justify left bottom)
 		)
-		(uuid "8e08508b-75d1-5fca-b127-2868a0b9b44f")
+		(uuid "840f0196-f5a9-5e11-890f-47506c2cd555")
 	)
-	(label "LED_SINK"
-		(at 91.44 148.59 270)
+	(label "LED_PWR"
+		(at 236.22 115.57 90)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify right bottom)
+			(justify left bottom)
 		)
-		(uuid "919d799c-80cd-5d21-af1a-0852dadb51fd")
-	)
-	(label "LED_SINK"
-		(at 106.68 148.59 270)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right bottom)
-		)
-		(uuid "95230616-4082-5ae6-bbb3-4136fc312ee0")
-	)
-	(label "LED_SINK"
-		(at 30.48 148.59 270)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right bottom)
-		)
-		(uuid "9bca9438-7543-5ef5-b265-aa93678ddeca")
-	)
-	(label "LED_SINK"
-		(at 228.6 148.59 270)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right bottom)
-		)
-		(uuid "9eb204a2-e9b3-5620-9fbc-cfa8c21d4a5a")
-	)
-	(label "LED_SINK"
-		(at 167.64 148.59 270)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right bottom)
-		)
-		(uuid "a10df2fe-7dee-5f5f-a75f-b30d41752a5f")
+		(uuid "9b70d635-e9b5-5cdb-a299-5b2ad0d4f206")
 	)
 	(label "CV"
 		(at 101.6 63.5 90)
@@ -2168,27 +2397,17 @@
 		)
 		(uuid "a76c7dc2-ce25-53cd-a180-f1769c17c960")
 	)
-	(label "LED_SINK"
-		(at 114.3 76.2 0)
+	(label "A_E1"
+		(at 101.6 140.97 90)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
 			(justify left bottom)
 		)
-		(uuid "ac59b878-f712-55b6-8f02-4ef740f67ed4")
+		(uuid "ac319aa8-0bcf-5bf2-9bf9-ac6d56765274")
 	)
-	(label "LED_SINK"
-		(at 198.12 148.59 270)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right bottom)
-		)
-		(uuid "af9e745b-0519-57f2-b6ce-2a36f0b0605a")
-	)
-	(label "LED_SINK"
+	(label "OUT"
 		(at 193.04 76.2 270)
 		(effects
 			(font
@@ -2196,7 +2415,17 @@
 			)
 			(justify right bottom)
 		)
-		(uuid "b8e879dc-39e3-5f55-bb77-02b5d8d54dd1")
+		(uuid "b8e86022-4ef9-5a38-8759-426713f5965c")
+	)
+	(label "LED_PWR"
+		(at 101.6 115.57 90)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "c1aa006c-0106-5d64-a5a0-a174e09e8ccb")
 	)
 	(label "DIS"
 		(at 58.42 69.85 90)
@@ -2208,15 +2437,25 @@
 		)
 		(uuid "c5be9e68-bfdb-56d9-86b7-faf6dd6b0a59")
 	)
-	(label "LED_SINK"
-		(at 45.72 148.59 270)
+	(label "A_C"
+		(at 162.56 140.97 90)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "c6fe6498-6364-5d86-a125-7f296f13d5c3")
+	)
+	(label "A_E2"
+		(at 236.22 128.27 270)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
 			(justify right bottom)
 		)
-		(uuid "c843730c-89b9-57e7-9b54-cf8d3996336a")
+		(uuid "d06b577d-ea1c-53e9-bfb7-6edca06ac676")
 	)
 	(label "DIS"
 		(at 45.72 82.55 270)
@@ -2228,6 +2467,16 @@
 		)
 		(uuid "d94c2c95-e4bc-58a1-af4b-c9af8f5b3463")
 	)
+	(label "A_C"
+		(at 187.96 140.97 90)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "dbc5b292-7889-593a-a7d9-5b11b689c38b")
+	)
 	(label "TH"
 		(at 88.9 81.28 180)
 		(effects
@@ -2237,6 +2486,26 @@
 			(justify right bottom)
 		)
 		(uuid "dca4426c-2872-583b-afbd-6854f95f089e")
+	)
+	(label "LED_PWR"
+		(at 48.26 119.38 270)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "e1246cf9-aa94-5b6b-9df6-2bc057bca12e")
+	)
+	(label "A_C"
+		(at 175.26 140.97 90)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "e4c94154-b35d-5967-98b1-20c6b5445a91")
 	)
 	(label "TH"
 		(at 58.42 82.55 270)
@@ -2248,26 +2517,6 @@
 		)
 		(uuid "e68cdcc1-a9d7-57bf-a370-4e1b38c5416f")
 	)
-	(label "LED_SINK"
-		(at 152.4 148.59 270)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right bottom)
-		)
-		(uuid "e7556824-ba47-5099-a3f6-87f08ec4e551")
-	)
-	(label "LED_SINK"
-		(at 76.2 148.59 270)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right bottom)
-		)
-		(uuid "f6fae8e7-5af2-5878-8fb4-23066a3ffe65")
-	)
 	(label "TH"
 		(at 88.9 78.74 180)
 		(effects
@@ -2278,112 +2527,29 @@
 		)
 		(uuid "f897cd4c-924a-5651-a70b-de96d86c1d99")
 	)
-	(symbol
-		(lib_id "Device:R")
-		(at 167.64 127 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "008f9144-ec90-5f16-b146-1e665e900b4b")
-		(property "Reference" "R12"
-			(at 170.18 125.73 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
+	(label "A_E1"
+		(at 88.9 140.97 90)
+		(effects
+			(font
+				(size 1.27 1.27)
 			)
+			(justify left bottom)
 		)
-		(property "Value" "3.3k"
-			(at 170.18 128.27 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
+		(uuid "fb1a383d-cdcb-589b-afeb-5662ad103197")
+	)
+	(label "LED_PWR"
+		(at 170.18 115.57 90)
+		(effects
+			(font
+				(size 1.27 1.27)
 			)
+			(justify left bottom)
 		)
-		(property "Footprint" "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder"
-			(at 167.64 127 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 167.64 127 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "3.3 kOhm 1% 0603, LED current limit"
-			(at 167.64 127 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "LCSC" "C22978"
-			(at 167.64 127 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "MPN" "0603WAF3301T5E"
-			(at 167.64 127 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "0c53c370-411e-545b-86e4-3871cad82a41")
-		)
-		(pin "2"
-			(uuid "5720e7a7-739a-53b7-9e2e-be2b9bcd58dc")
-		)
-		(instances
-			(project "ece_souvenir"
-				(path "/6c3e6f0e-5b1a-4c55-9e0e-ece500000001"
-					(reference "R12")
-					(unit 1)
-				)
-			)
-		)
+		(uuid "fb4f0a26-8b93-5d9b-804b-0aa0d39c456d")
 	)
 	(symbol
 		(lib_id "Device:LED")
-		(at 30.48 142.24 90)
+		(at 76.2 147.32 90)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -2393,7 +2559,7 @@
 		(dnp no)
 		(uuid "01bb40ea-85a4-5839-9ea5-4f69972b83ff")
 		(property "Reference" "D1"
-			(at 33.02 141.61 0)
+			(at 71.75 147.95 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -2404,7 +2570,7 @@
 			)
 		)
 		(property "Value" "Orange"
-			(at 33.02 144.14 0)
+			(at 71.75 149.86 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2416,7 +2582,7 @@
 			)
 		)
 		(property "Footprint" "LED_SMD:LED_0603_1608Metric_Pad1.05x0.95mm_HandSolder"
-			(at 30.48 142.24 0)
+			(at 76.2 147.32 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2427,7 +2593,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 30.48 142.24 0)
+			(at 76.2 147.32 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2438,7 +2604,7 @@
 			)
 		)
 		(property "Description" "Orange 605 nm 0603 LED (XINGLIGHT)"
-			(at 30.48 142.24 0)
+			(at 76.2 147.32 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2449,7 +2615,7 @@
 			)
 		)
 		(property "LCSC" "C965800"
-			(at 30.48 142.24 0)
+			(at 76.2 147.32 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2460,7 +2626,7 @@
 			)
 		)
 		(property "MPN" "XL-1608UOC-06"
-			(at 30.48 142.24 0)
+			(at 76.2 147.32 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2562,8 +2728,8 @@
 		)
 	)
 	(symbol
-		(lib_id "power:VCC")
-		(at 213.36 120.65 0)
+		(lib_id "power:GND")
+		(at 236.22 153.67 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -2573,7 +2739,7 @@
 		(dnp no)
 		(uuid "032f1a66-faf3-5147-b569-9cad1091a3fd")
 		(property "Reference" "#PWR27"
-			(at 213.36 127 0)
+			(at 236.22 160.02 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2583,8 +2749,8 @@
 				)
 			)
 		)
-		(property "Value" "VCC"
-			(at 213.36 116.84 0)
+		(property "Value" "GND"
+			(at 236.22 157.48 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -2594,7 +2760,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 213.36 120.65 0)
+			(at 236.22 153.67 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2605,7 +2771,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 213.36 120.65 0)
+			(at 236.22 153.67 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2616,7 +2782,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 213.36 120.65 0)
+			(at 236.22 153.67 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -2638,8 +2804,8 @@
 		)
 	)
 	(symbol
-		(lib_id "power:VCC")
-		(at 167.64 120.65 0)
+		(lib_id "power:GND")
+		(at 187.96 153.67 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -2649,7 +2815,7 @@
 		(dnp no)
 		(uuid "05d90686-cf14-513d-b0f7-a1d952b2ebb0")
 		(property "Reference" "#PWR24"
-			(at 167.64 127 0)
+			(at 187.96 160.02 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2659,8 +2825,8 @@
 				)
 			)
 		)
-		(property "Value" "VCC"
-			(at 167.64 116.84 0)
+		(property "Value" "GND"
+			(at 187.96 157.48 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -2670,7 +2836,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 167.64 120.65 0)
+			(at 187.96 153.67 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2681,7 +2847,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 167.64 120.65 0)
+			(at 187.96 153.67 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2692,7 +2858,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 167.64 120.65 0)
+			(at 187.96 153.67 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -2714,8 +2880,8 @@
 		)
 	)
 	(symbol
-		(lib_id "power:VCC")
-		(at 121.92 120.65 0)
+		(lib_id "power:GND")
+		(at 149.86 153.67 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -2725,7 +2891,7 @@
 		(dnp no)
 		(uuid "10d3856b-e551-5a57-9a94-c2b044523944")
 		(property "Reference" "#PWR21"
-			(at 121.92 127 0)
+			(at 149.86 160.02 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2735,8 +2901,8 @@
 				)
 			)
 		)
-		(property "Value" "VCC"
-			(at 121.92 116.84 0)
+		(property "Value" "GND"
+			(at 149.86 157.48 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -2746,7 +2912,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 121.92 120.65 0)
+			(at 149.86 153.67 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2757,7 +2923,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 121.92 120.65 0)
+			(at 149.86 153.67 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2768,7 +2934,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 121.92 120.65 0)
+			(at 149.86 153.67 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -2784,109 +2950,6 @@
 			(project "ece_souvenir"
 				(path "/6c3e6f0e-5b1a-4c55-9e0e-ece500000001"
 					(reference "#PWR21")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:R")
-		(at 152.4 127 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "133925fd-72bc-5f9e-a8cb-1dd0087c21c4")
-		(property "Reference" "R11"
-			(at 154.94 125.73 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "3.3k"
-			(at 154.94 128.27 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder"
-			(at 152.4 127 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 152.4 127 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "3.3 kOhm 1% 0603, LED current limit"
-			(at 152.4 127 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "LCSC" "C22978"
-			(at 152.4 127 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "MPN" "0603WAF3301T5E"
-			(at 152.4 127 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "9546a296-d406-5961-9b74-fbaa358b0617")
-		)
-		(pin "2"
-			(uuid "d6bac0cd-8b53-55a7-9328-e6bb19ed76b2")
-		)
-		(instances
-			(project "ece_souvenir"
-				(path "/6c3e6f0e-5b1a-4c55-9e0e-ece500000001"
-					(reference "R11")
 					(unit 1)
 				)
 			)
@@ -3198,7 +3261,7 @@
 	)
 	(symbol
 		(lib_id "Device:R")
-		(at 30.48 127 0)
+		(at 101.6 121.92 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -3208,7 +3271,7 @@
 		(dnp no)
 		(uuid "1fbaba54-b0ee-50a1-9d40-14e9997cf6b1")
 		(property "Reference" "R3"
-			(at 33.02 125.73 0)
+			(at 104.14 120.65 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -3218,8 +3281,8 @@
 				(justify left)
 			)
 		)
-		(property "Value" "3.3k"
-			(at 33.02 128.27 0)
+		(property "Value" "680"
+			(at 104.14 123.19 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -3230,7 +3293,7 @@
 			)
 		)
 		(property "Footprint" "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder"
-			(at 30.48 127 0)
+			(at 101.6 121.92 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3241,7 +3304,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 30.48 127 0)
+			(at 101.6 121.92 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3251,8 +3314,8 @@
 				)
 			)
 		)
-		(property "Description" "3.3 kOhm 1% 0603, LED current limit"
-			(at 30.48 127 0)
+		(property "Description" "680 Ohm 1% 0603, digit E1 (5 LEDs)"
+			(at 101.6 121.92 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3262,8 +3325,8 @@
 				)
 			)
 		)
-		(property "LCSC" "C22978"
-			(at 30.48 127 0)
+		(property "LCSC" "C23228"
+			(at 101.6 121.92 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3273,8 +3336,8 @@
 				)
 			)
 		)
-		(property "MPN" "0603WAF3301T5E"
-			(at 30.48 127 0)
+		(property "MPN" "0603WAF6800T5E"
+			(at 101.6 121.92 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3300,8 +3363,8 @@
 		)
 	)
 	(symbol
-		(lib_id "power:VCC")
-		(at 91.44 120.65 0)
+		(lib_id "power:GND")
+		(at 114.3 153.67 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -3311,7 +3374,7 @@
 		(dnp no)
 		(uuid "2a9b361b-1e50-56f7-a5f2-0cdafe205365")
 		(property "Reference" "#PWR19"
-			(at 91.44 127 0)
+			(at 114.3 160.02 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3321,8 +3384,8 @@
 				)
 			)
 		)
-		(property "Value" "VCC"
-			(at 91.44 116.84 0)
+		(property "Value" "GND"
+			(at 114.3 157.48 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -3332,7 +3395,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 91.44 120.65 0)
+			(at 114.3 153.67 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3343,7 +3406,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 91.44 120.65 0)
+			(at 114.3 153.67 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3354,7 +3417,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 91.44 120.65 0)
+			(at 114.3 153.67 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -3376,8 +3439,8 @@
 		)
 	)
 	(symbol
-		(lib_id "power:VCC")
-		(at 45.72 120.65 0)
+		(lib_id "power:GND")
+		(at 76.2 153.67 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -3387,7 +3450,7 @@
 		(dnp no)
 		(uuid "2c69ca20-2131-5ae9-833e-b282d0eee60b")
 		(property "Reference" "#PWR16"
-			(at 45.72 127 0)
+			(at 76.2 160.02 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3397,8 +3460,8 @@
 				)
 			)
 		)
-		(property "Value" "VCC"
-			(at 45.72 116.84 0)
+		(property "Value" "GND"
+			(at 76.2 157.48 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -3408,7 +3471,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 45.72 120.65 0)
+			(at 76.2 153.67 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3419,7 +3482,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 45.72 120.65 0)
+			(at 76.2 153.67 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3430,7 +3493,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 45.72 120.65 0)
+			(at 76.2 153.67 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -3452,8 +3515,8 @@
 		)
 	)
 	(symbol
-		(lib_id "power:VCC")
-		(at 60.96 120.65 0)
+		(lib_id "power:GND")
+		(at 88.9 153.67 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -3463,7 +3526,7 @@
 		(dnp no)
 		(uuid "2d5932ed-1df6-5090-a761-84d4fc19a3f5")
 		(property "Reference" "#PWR17"
-			(at 60.96 127 0)
+			(at 88.9 160.02 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3473,8 +3536,8 @@
 				)
 			)
 		)
-		(property "Value" "VCC"
-			(at 60.96 116.84 0)
+		(property "Value" "GND"
+			(at 88.9 157.48 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -3484,7 +3547,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 60.96 120.65 0)
+			(at 88.9 153.67 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3495,7 +3558,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 60.96 120.65 0)
+			(at 88.9 153.67 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3506,7 +3569,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 60.96 120.65 0)
+			(at 88.9 153.67 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -3529,7 +3592,7 @@
 	)
 	(symbol
 		(lib_id "Device:LED")
-		(at 45.72 142.24 90)
+		(at 88.9 147.32 90)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -3539,7 +3602,7 @@
 		(dnp no)
 		(uuid "34898bea-233e-5f3c-9258-3c9591f4b891")
 		(property "Reference" "D2"
-			(at 48.26 141.61 0)
+			(at 84.46 147.95 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -3550,7 +3613,7 @@
 			)
 		)
 		(property "Value" "Orange"
-			(at 48.26 144.14 0)
+			(at 84.46 149.86 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3562,7 +3625,7 @@
 			)
 		)
 		(property "Footprint" "LED_SMD:LED_0603_1608Metric_Pad1.05x0.95mm_HandSolder"
-			(at 45.72 142.24 0)
+			(at 88.9 147.32 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3573,7 +3636,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 45.72 142.24 0)
+			(at 88.9 147.32 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3584,7 +3647,7 @@
 			)
 		)
 		(property "Description" "Orange 605 nm 0603 LED (XINGLIGHT)"
-			(at 45.72 142.24 0)
+			(at 88.9 147.32 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3595,7 +3658,7 @@
 			)
 		)
 		(property "LCSC" "C965800"
-			(at 45.72 142.24 0)
+			(at 88.9 147.32 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3606,7 +3669,7 @@
 			)
 		)
 		(property "MPN" "XL-1608UOC-06"
-			(at 45.72 142.24 0)
+			(at 88.9 147.32 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3736,7 +3799,7 @@
 	)
 	(symbol
 		(lib_id "Device:LED")
-		(at 60.96 142.24 90)
+		(at 101.6 147.32 90)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -3746,7 +3809,7 @@
 		(dnp no)
 		(uuid "3a789447-914c-591d-9554-0716f8ab049b")
 		(property "Reference" "D3"
-			(at 63.5 141.61 0)
+			(at 97.16 147.95 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -3757,7 +3820,7 @@
 			)
 		)
 		(property "Value" "Orange"
-			(at 63.5 144.14 0)
+			(at 97.16 149.86 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3769,7 +3832,7 @@
 			)
 		)
 		(property "Footprint" "LED_SMD:LED_0603_1608Metric_Pad1.05x0.95mm_HandSolder"
-			(at 60.96 142.24 0)
+			(at 101.6 147.32 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3780,7 +3843,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 60.96 142.24 0)
+			(at 101.6 147.32 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3791,7 +3854,7 @@
 			)
 		)
 		(property "Description" "Orange 605 nm 0603 LED (XINGLIGHT)"
-			(at 60.96 142.24 0)
+			(at 101.6 147.32 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3802,7 +3865,7 @@
 			)
 		)
 		(property "LCSC" "C965800"
-			(at 60.96 142.24 0)
+			(at 101.6 147.32 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3813,7 +3876,7 @@
 			)
 		)
 		(property "MPN" "XL-1608UOC-06"
-			(at 60.96 142.24 0)
+			(at 101.6 147.32 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3839,8 +3902,8 @@
 		)
 	)
 	(symbol
-		(lib_id "power:VCC")
-		(at 137.16 120.65 0)
+		(lib_id "power:GND")
+		(at 162.56 153.67 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -3850,7 +3913,7 @@
 		(dnp no)
 		(uuid "403075bf-a324-5ee3-b5b2-1a00fdd5c6fe")
 		(property "Reference" "#PWR22"
-			(at 137.16 127 0)
+			(at 162.56 160.02 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3860,8 +3923,8 @@
 				)
 			)
 		)
-		(property "Value" "VCC"
-			(at 137.16 116.84 0)
+		(property "Value" "GND"
+			(at 162.56 157.48 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -3871,7 +3934,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 137.16 120.65 0)
+			(at 162.56 153.67 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3882,7 +3945,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 137.16 120.65 0)
+			(at 162.56 153.67 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3893,7 +3956,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 137.16 120.65 0)
+			(at 162.56 153.67 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -3969,7 +4032,7 @@
 				)
 			)
 		)
-		(property "Description" "555 OUT / LED_SINK probe pad"
+		(property "Description" "555 OUT probe pad"
 			(at 193.04 73.66 0)
 			(hide yes)
 			(show_name no)
@@ -3994,7 +4057,7 @@
 	)
 	(symbol
 		(lib_id "power:VCC")
-		(at 30.48 120.65 0)
+		(at 48.26 104.14 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -4004,7 +4067,7 @@
 		(dnp no)
 		(uuid "4426677b-d732-5d54-9b7b-59f5c8b94e06")
 		(property "Reference" "#PWR15"
-			(at 30.48 127 0)
+			(at 48.26 110.49 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4015,7 +4078,7 @@
 			)
 		)
 		(property "Value" "VCC"
-			(at 30.48 116.84 0)
+			(at 48.26 100.33 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -4025,7 +4088,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 30.48 120.65 0)
+			(at 48.26 104.14 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4036,7 +4099,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 30.48 120.65 0)
+			(at 48.26 104.14 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4047,7 +4110,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 30.48 120.65 0)
+			(at 48.26 104.14 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -4070,7 +4133,7 @@
 	)
 	(symbol
 		(lib_id "Device:LED")
-		(at 91.44 142.24 90)
+		(at 127 147.32 90)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -4080,7 +4143,7 @@
 		(dnp no)
 		(uuid "443b89fb-d94a-51ab-a756-c66bbbd416b3")
 		(property "Reference" "D5"
-			(at 93.98 141.61 0)
+			(at 122.56 147.95 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -4091,7 +4154,7 @@
 			)
 		)
 		(property "Value" "Orange"
-			(at 93.98 144.14 0)
+			(at 122.56 149.86 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4103,7 +4166,7 @@
 			)
 		)
 		(property "Footprint" "LED_SMD:LED_0603_1608Metric_Pad1.05x0.95mm_HandSolder"
-			(at 91.44 142.24 0)
+			(at 127 147.32 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4114,7 +4177,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 91.44 142.24 0)
+			(at 127 147.32 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4125,7 +4188,7 @@
 			)
 		)
 		(property "Description" "Orange 605 nm 0603 LED (XINGLIGHT)"
-			(at 91.44 142.24 0)
+			(at 127 147.32 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4136,7 +4199,7 @@
 			)
 		)
 		(property "LCSC" "C965800"
-			(at 91.44 142.24 0)
+			(at 127 147.32 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4147,7 +4210,7 @@
 			)
 		)
 		(property "MPN" "XL-1608UOC-06"
-			(at 91.44 142.24 0)
+			(at 127 147.32 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4353,7 +4416,7 @@
 	)
 	(symbol
 		(lib_id "Device:LED")
-		(at 76.2 142.24 90)
+		(at 114.3 147.32 90)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -4363,7 +4426,7 @@
 		(dnp no)
 		(uuid "500ea333-5333-5c56-b561-9192417f5bef")
 		(property "Reference" "D4"
-			(at 78.74 141.61 0)
+			(at 109.85 147.95 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -4374,7 +4437,7 @@
 			)
 		)
 		(property "Value" "Orange"
-			(at 78.74 144.14 0)
+			(at 109.85 149.86 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4386,7 +4449,7 @@
 			)
 		)
 		(property "Footprint" "LED_SMD:LED_0603_1608Metric_Pad1.05x0.95mm_HandSolder"
-			(at 76.2 142.24 0)
+			(at 114.3 147.32 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4397,7 +4460,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 76.2 142.24 0)
+			(at 114.3 147.32 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4408,7 +4471,7 @@
 			)
 		)
 		(property "Description" "Orange 605 nm 0603 LED (XINGLIGHT)"
-			(at 76.2 142.24 0)
+			(at 114.3 147.32 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4419,7 +4482,7 @@
 			)
 		)
 		(property "LCSC" "C965800"
-			(at 76.2 142.24 0)
+			(at 114.3 147.32 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4430,7 +4493,7 @@
 			)
 		)
 		(property "MPN" "XL-1608UOC-06"
-			(at 76.2 142.24 0)
+			(at 114.3 147.32 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4457,7 +4520,7 @@
 	)
 	(symbol
 		(lib_id "Device:LED")
-		(at 106.68 142.24 90)
+		(at 149.86 147.32 90)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -4467,7 +4530,7 @@
 		(dnp no)
 		(uuid "52797422-d007-54ff-ae4e-d92664a6a733")
 		(property "Reference" "D6"
-			(at 109.22 141.61 0)
+			(at 145.42 147.95 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -4478,7 +4541,7 @@
 			)
 		)
 		(property "Value" "Orange"
-			(at 109.22 144.14 0)
+			(at 145.42 149.86 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4490,7 +4553,7 @@
 			)
 		)
 		(property "Footprint" "LED_SMD:LED_0603_1608Metric_Pad1.05x0.95mm_HandSolder"
-			(at 106.68 142.24 0)
+			(at 149.86 147.32 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4501,7 +4564,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 106.68 142.24 0)
+			(at 149.86 147.32 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4512,7 +4575,7 @@
 			)
 		)
 		(property "Description" "Orange 605 nm 0603 LED (XINGLIGHT)"
-			(at 106.68 142.24 0)
+			(at 149.86 147.32 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4523,7 +4586,7 @@
 			)
 		)
 		(property "LCSC" "C965800"
-			(at 106.68 142.24 0)
+			(at 149.86 147.32 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4534,7 +4597,7 @@
 			)
 		)
 		(property "MPN" "XL-1608UOC-06"
-			(at 106.68 142.24 0)
+			(at 149.86 147.32 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4560,8 +4623,8 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:R")
-		(at 121.92 127 0)
+		(lib_id "Transistor_BJT:Q_PNP_BEC")
+		(at 50.8 111.76 180)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -4569,9 +4632,9 @@
 		(on_board yes)
 		(in_pos_files yes)
 		(dnp no)
-		(uuid "5b15048c-d816-579b-b85f-25c9db078f4c")
-		(property "Reference" "R9"
-			(at 124.46 125.73 0)
+		(uuid "5b7b5036-6eb0-5b16-b9c0-270f37891ec8")
+		(property "Reference" "Q1"
+			(at 39.37 110.49 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -4581,8 +4644,8 @@
 				(justify left)
 			)
 		)
-		(property "Value" "3.3k"
-			(at 124.46 128.27 0)
+		(property "Value" "MMBT3906"
+			(at 39.37 113.03 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -4592,8 +4655,8 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder"
-			(at 121.92 127 0)
+		(property "Footprint" "Package_TO_SOT_SMD:SOT-23_Handsoldering"
+			(at 50.8 111.76 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4604,7 +4667,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 121.92 127 0)
+			(at 50.8 111.76 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4614,8 +4677,8 @@
 				)
 			)
 		)
-		(property "Description" "3.3 kOhm 1% 0603, LED current limit"
-			(at 121.92 127 0)
+		(property "Description" "onsemi PNP 40 V 200 mA, LED high-side switch"
+			(at 50.8 111.76 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4625,8 +4688,8 @@
 				)
 			)
 		)
-		(property "LCSC" "C22978"
-			(at 121.92 127 0)
+		(property "LCSC" "C53444"
+			(at 50.8 111.76 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4636,111 +4699,8 @@
 				)
 			)
 		)
-		(property "MPN" "0603WAF3301T5E"
-			(at 121.92 127 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "576b99d7-dcc7-52a9-997d-7ebd6a03a55d")
-		)
-		(pin "2"
-			(uuid "1a2489f0-bbfa-56e7-92d5-5f1e1b22df0c")
-		)
-		(instances
-			(project "ece_souvenir"
-				(path "/6c3e6f0e-5b1a-4c55-9e0e-ece500000001"
-					(reference "R9")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:R")
-		(at 182.88 127 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "6037b01b-01c4-5427-85df-b75a1051cd8f")
-		(property "Reference" "R13"
-			(at 185.42 125.73 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "3.3k"
-			(at 185.42 128.27 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder"
-			(at 182.88 127 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 182.88 127 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "3.3 kOhm 1% 0603, LED current limit"
-			(at 182.88 127 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "LCSC" "C22978"
-			(at 182.88 127 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "MPN" "0603WAF3301T5E"
-			(at 182.88 127 0)
+		(property "MPN" "MMBT3906LT1G"
+			(at 50.8 111.76 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4751,15 +4711,18 @@
 			)
 		)
 		(pin "1"
-			(uuid "73e7f0af-1934-5804-b9ae-4f09499630b2")
+			(uuid "a4670e41-783a-5e66-9921-5559c9156b17")
 		)
 		(pin "2"
-			(uuid "0410f877-8d08-5d9f-a127-1567ee6c0d18")
+			(uuid "6d23b393-b1b2-5c57-ad46-c3cf3c26ec70")
+		)
+		(pin "3"
+			(uuid "377cd15e-e4c5-58c2-94af-c43ecd475889")
 		)
 		(instances
 			(project "ece_souvenir"
 				(path "/6c3e6f0e-5b1a-4c55-9e0e-ece500000001"
-					(reference "R13")
+					(reference "Q1")
 					(unit 1)
 				)
 			)
@@ -4767,7 +4730,7 @@
 	)
 	(symbol
 		(lib_id "Device:LED")
-		(at 121.92 142.24 90)
+		(at 162.56 147.32 90)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -4777,7 +4740,7 @@
 		(dnp no)
 		(uuid "612cfd15-b3ba-5714-a88a-a7521325dc86")
 		(property "Reference" "D7"
-			(at 124.46 141.61 0)
+			(at 158.12 147.95 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -4788,7 +4751,7 @@
 			)
 		)
 		(property "Value" "Orange"
-			(at 124.46 144.14 0)
+			(at 158.12 149.86 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4800,7 +4763,7 @@
 			)
 		)
 		(property "Footprint" "LED_SMD:LED_0603_1608Metric_Pad1.05x0.95mm_HandSolder"
-			(at 121.92 142.24 0)
+			(at 162.56 147.32 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4811,7 +4774,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 121.92 142.24 0)
+			(at 162.56 147.32 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4822,7 +4785,7 @@
 			)
 		)
 		(property "Description" "Orange 605 nm 0603 LED (XINGLIGHT)"
-			(at 121.92 142.24 0)
+			(at 162.56 147.32 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4833,7 +4796,7 @@
 			)
 		)
 		(property "LCSC" "C965800"
-			(at 121.92 142.24 0)
+			(at 162.56 147.32 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4844,7 +4807,7 @@
 			)
 		)
 		(property "MPN" "XL-1608UOC-06"
-			(at 121.92 142.24 0)
+			(at 162.56 147.32 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5170,214 +5133,8 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:R")
-		(at 213.36 127 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "6a7de3a6-2e8b-5805-aced-4f4e81fefa70")
-		(property "Reference" "R15"
-			(at 215.9 125.73 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "3.3k"
-			(at 215.9 128.27 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder"
-			(at 213.36 127 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 213.36 127 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "3.3 kOhm 1% 0603, LED current limit"
-			(at 213.36 127 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "LCSC" "C22978"
-			(at 213.36 127 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "MPN" "0603WAF3301T5E"
-			(at 213.36 127 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "f7951ab4-b93a-5c15-a1de-533febafcb61")
-		)
-		(pin "2"
-			(uuid "f6066a13-33bc-5905-9af4-0dc8a55dbd03")
-		)
-		(instances
-			(project "ece_souvenir"
-				(path "/6c3e6f0e-5b1a-4c55-9e0e-ece500000001"
-					(reference "R15")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:R")
-		(at 91.44 127 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "6cf0e133-e5a3-59b8-8f0d-25181079cbd8")
-		(property "Reference" "R7"
-			(at 93.98 125.73 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "3.3k"
-			(at 93.98 128.27 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder"
-			(at 91.44 127 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 91.44 127 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "3.3 kOhm 1% 0603, LED current limit"
-			(at 91.44 127 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "LCSC" "C22978"
-			(at 91.44 127 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "MPN" "0603WAF3301T5E"
-			(at 91.44 127 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "dbbf79f3-8554-5239-90c8-dc34c4d46f1e")
-		)
-		(pin "2"
-			(uuid "069b85a5-dd61-51fb-8a6d-4c4f4fe97128")
-		)
-		(instances
-			(project "ece_souvenir"
-				(path "/6c3e6f0e-5b1a-4c55-9e0e-ece500000001"
-					(reference "R7")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:VCC")
-		(at 152.4 120.65 0)
+		(lib_id "power:GND")
+		(at 175.26 153.67 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -5387,7 +5144,7 @@
 		(dnp no)
 		(uuid "78873635-8e42-519b-82df-fca643b96ebb")
 		(property "Reference" "#PWR23"
-			(at 152.4 127 0)
+			(at 175.26 160.02 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5397,8 +5154,8 @@
 				)
 			)
 		)
-		(property "Value" "VCC"
-			(at 152.4 116.84 0)
+		(property "Value" "GND"
+			(at 175.26 157.48 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -5408,7 +5165,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 152.4 120.65 0)
+			(at 175.26 153.67 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5419,7 +5176,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 152.4 120.65 0)
+			(at 175.26 153.67 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5430,7 +5187,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 152.4 120.65 0)
+			(at 175.26 153.67 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -5634,7 +5391,7 @@
 	)
 	(symbol
 		(lib_id "Device:LED")
-		(at 198.12 142.24 90)
+		(at 236.22 147.32 90)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -5644,7 +5401,7 @@
 		(dnp no)
 		(uuid "7ceb837e-90e9-5e1b-907c-664ef08f8c9c")
 		(property "Reference" "D12"
-			(at 200.66 141.61 0)
+			(at 231.78 147.95 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -5655,7 +5412,7 @@
 			)
 		)
 		(property "Value" "Orange"
-			(at 200.66 144.14 0)
+			(at 231.78 149.86 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5667,7 +5424,7 @@
 			)
 		)
 		(property "Footprint" "LED_SMD:LED_0603_1608Metric_Pad1.05x0.95mm_HandSolder"
-			(at 198.12 142.24 0)
+			(at 236.22 147.32 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5678,7 +5435,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 198.12 142.24 0)
+			(at 236.22 147.32 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5689,7 +5446,7 @@
 			)
 		)
 		(property "Description" "Orange 605 nm 0603 LED (XINGLIGHT)"
-			(at 198.12 142.24 0)
+			(at 236.22 147.32 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5700,7 +5457,7 @@
 			)
 		)
 		(property "LCSC" "C965800"
-			(at 198.12 142.24 0)
+			(at 236.22 147.32 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5711,7 +5468,7 @@
 			)
 		)
 		(property "MPN" "XL-1608UOC-06"
-			(at 198.12 142.24 0)
+			(at 236.22 147.32 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5738,7 +5495,7 @@
 	)
 	(symbol
 		(lib_id "Device:R")
-		(at 76.2 127 0)
+		(at 66.04 111.76 90)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -5748,7 +5505,7 @@
 		(dnp no)
 		(uuid "8849b2f1-631f-54f7-9366-ad03dc764759")
 		(property "Reference" "R6"
-			(at 78.74 125.73 0)
+			(at 64.77 109.22 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -5758,8 +5515,8 @@
 				(justify left)
 			)
 		)
-		(property "Value" "3.3k"
-			(at 78.74 128.27 0)
+		(property "Value" "4.7k"
+			(at 64.77 115.57 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -5770,7 +5527,7 @@
 			)
 		)
 		(property "Footprint" "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder"
-			(at 76.2 127 0)
+			(at 66.04 111.76 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5781,7 +5538,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 76.2 127 0)
+			(at 66.04 111.76 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5791,8 +5548,8 @@
 				)
 			)
 		)
-		(property "Description" "3.3 kOhm 1% 0603, LED current limit"
-			(at 76.2 127 0)
+		(property "Description" "4.7 kOhm 1% 0603, Q1 base (forced beta >= 10 at 3.3-5 V)"
+			(at 66.04 111.76 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5802,8 +5559,8 @@
 				)
 			)
 		)
-		(property "LCSC" "C22978"
-			(at 76.2 127 0)
+		(property "LCSC" "C23162"
+			(at 66.04 111.76 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5813,8 +5570,8 @@
 				)
 			)
 		)
-		(property "MPN" "0603WAF3301T5E"
-			(at 76.2 127 0)
+		(property "MPN" "0603WAF4701T5E"
+			(at 66.04 111.76 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5910,109 +5667,6 @@
 			(project "ece_souvenir"
 				(path "/6c3e6f0e-5b1a-4c55-9e0e-ece500000001"
 					(reference "#PWR08")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:R")
-		(at 137.16 127 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "8fa707d3-18e0-5b08-9219-fcd3cf96ab44")
-		(property "Reference" "R10"
-			(at 139.7 125.73 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "3.3k"
-			(at 139.7 128.27 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder"
-			(at 137.16 127 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 137.16 127 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "3.3 kOhm 1% 0603, LED current limit"
-			(at 137.16 127 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "LCSC" "C22978"
-			(at 137.16 127 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "MPN" "0603WAF3301T5E"
-			(at 137.16 127 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "e2adb3ce-e96a-5c22-916a-893652815e4d")
-		)
-		(pin "2"
-			(uuid "caafc6a5-8112-504a-a868-4bb5caea0ec1")
-		)
-		(instances
-			(project "ece_souvenir"
-				(path "/6c3e6f0e-5b1a-4c55-9e0e-ece500000001"
-					(reference "R10")
 					(unit 1)
 				)
 			)
@@ -6248,7 +5902,7 @@
 	)
 	(symbol
 		(lib_id "Device:LED")
-		(at 152.4 142.24 90)
+		(at 187.96 147.32 90)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -6258,7 +5912,7 @@
 		(dnp no)
 		(uuid "a468585d-1b36-5f4c-85ed-9ab2536ee108")
 		(property "Reference" "D9"
-			(at 154.94 141.61 0)
+			(at 183.52 147.95 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -6269,7 +5923,7 @@
 			)
 		)
 		(property "Value" "Orange"
-			(at 154.94 144.14 0)
+			(at 183.52 149.86 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6281,7 +5935,7 @@
 			)
 		)
 		(property "Footprint" "LED_SMD:LED_0603_1608Metric_Pad1.05x0.95mm_HandSolder"
-			(at 152.4 142.24 0)
+			(at 187.96 147.32 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6292,7 +5946,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 152.4 142.24 0)
+			(at 187.96 147.32 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6303,7 +5957,7 @@
 			)
 		)
 		(property "Description" "Orange 605 nm 0603 LED (XINGLIGHT)"
-			(at 152.4 142.24 0)
+			(at 187.96 147.32 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6314,7 +5968,7 @@
 			)
 		)
 		(property "LCSC" "C965800"
-			(at 152.4 142.24 0)
+			(at 187.96 147.32 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6325,7 +5979,7 @@
 			)
 		)
 		(property "MPN" "XL-1608UOC-06"
-			(at 152.4 142.24 0)
+			(at 187.96 147.32 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6352,7 +6006,7 @@
 	)
 	(symbol
 		(lib_id "Device:LED")
-		(at 228.6 142.24 90)
+		(at 261.62 147.32 90)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -6362,7 +6016,7 @@
 		(dnp no)
 		(uuid "a538c140-eba8-566a-83e9-21f831a3e43d")
 		(property "Reference" "D14"
-			(at 231.14 141.61 0)
+			(at 257.18 147.95 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -6373,7 +6027,7 @@
 			)
 		)
 		(property "Value" "Orange"
-			(at 231.14 144.14 0)
+			(at 257.18 149.86 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6385,7 +6039,7 @@
 			)
 		)
 		(property "Footprint" "LED_SMD:LED_0603_1608Metric_Pad1.05x0.95mm_HandSolder"
-			(at 228.6 142.24 0)
+			(at 261.62 147.32 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6396,7 +6050,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 228.6 142.24 0)
+			(at 261.62 147.32 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6407,7 +6061,7 @@
 			)
 		)
 		(property "Description" "Orange 605 nm 0603 LED (XINGLIGHT)"
-			(at 228.6 142.24 0)
+			(at 261.62 147.32 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6418,7 +6072,7 @@
 			)
 		)
 		(property "LCSC" "C965800"
-			(at 228.6 142.24 0)
+			(at 261.62 147.32 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6429,7 +6083,7 @@
 			)
 		)
 		(property "MPN" "XL-1608UOC-06"
-			(at 228.6 142.24 0)
+			(at 261.62 147.32 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6531,111 +6185,8 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:R")
-		(at 106.68 127 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "b3e24dad-7b4e-5c9a-8b1e-5f59b345d5db")
-		(property "Reference" "R8"
-			(at 109.22 125.73 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "3.3k"
-			(at 109.22 128.27 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder"
-			(at 106.68 127 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 106.68 127 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "3.3 kOhm 1% 0603, LED current limit"
-			(at 106.68 127 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "LCSC" "C22978"
-			(at 106.68 127 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "MPN" "0603WAF3301T5E"
-			(at 106.68 127 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "5e99bd21-0682-5d27-9477-099fea281b5c")
-		)
-		(pin "2"
-			(uuid "44acb85c-57d7-5d6a-b3b5-5c7ed677d0bf")
-		)
-		(instances
-			(project "ece_souvenir"
-				(path "/6c3e6f0e-5b1a-4c55-9e0e-ece500000001"
-					(reference "R8")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Device:LED")
-		(at 167.64 142.24 90)
+		(at 210.82 147.32 90)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -6645,7 +6196,7 @@
 		(dnp no)
 		(uuid "b9548e36-117d-5b08-9eb6-3edd5fe5f28f")
 		(property "Reference" "D10"
-			(at 170.18 141.61 0)
+			(at 206.38 147.95 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -6656,7 +6207,7 @@
 			)
 		)
 		(property "Value" "Orange"
-			(at 170.18 144.14 0)
+			(at 206.38 149.86 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6668,7 +6219,7 @@
 			)
 		)
 		(property "Footprint" "LED_SMD:LED_0603_1608Metric_Pad1.05x0.95mm_HandSolder"
-			(at 167.64 142.24 0)
+			(at 210.82 147.32 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6679,7 +6230,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 167.64 142.24 0)
+			(at 210.82 147.32 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6690,7 +6241,7 @@
 			)
 		)
 		(property "Description" "Orange 605 nm 0603 LED (XINGLIGHT)"
-			(at 167.64 142.24 0)
+			(at 210.82 147.32 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6701,7 +6252,7 @@
 			)
 		)
 		(property "LCSC" "C965800"
-			(at 167.64 142.24 0)
+			(at 210.82 147.32 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6712,7 +6263,7 @@
 			)
 		)
 		(property "MPN" "XL-1608UOC-06"
-			(at 167.64 142.24 0)
+			(at 210.82 147.32 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6738,111 +6289,8 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:R")
-		(at 198.12 127 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "bb9bffc3-7790-5096-9d76-085c7d50c0f7")
-		(property "Reference" "R14"
-			(at 200.66 125.73 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "3.3k"
-			(at 200.66 128.27 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder"
-			(at 198.12 127 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 198.12 127 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "3.3 kOhm 1% 0603, LED current limit"
-			(at 198.12 127 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "LCSC" "C22978"
-			(at 198.12 127 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "MPN" "0603WAF3301T5E"
-			(at 198.12 127 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "e254294f-881d-5608-ace9-4d4769b70ba0")
-		)
-		(pin "2"
-			(uuid "7b4ba6d3-db47-5c45-b68e-fcf0a0b469e3")
-		)
-		(instances
-			(project "ece_souvenir"
-				(path "/6c3e6f0e-5b1a-4c55-9e0e-ece500000001"
-					(reference "R14")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:VCC")
-		(at 76.2 120.65 0)
+		(lib_id "power:GND")
+		(at 101.6 153.67 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -6852,7 +6300,7 @@
 		(dnp no)
 		(uuid "c6229c7c-44a6-501b-abb6-8f0a1aa7e369")
 		(property "Reference" "#PWR18"
-			(at 76.2 127 0)
+			(at 101.6 160.02 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6862,8 +6310,8 @@
 				)
 			)
 		)
-		(property "Value" "VCC"
-			(at 76.2 116.84 0)
+		(property "Value" "GND"
+			(at 101.6 157.48 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -6873,7 +6321,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 76.2 120.65 0)
+			(at 101.6 153.67 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6884,7 +6332,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 76.2 120.65 0)
+			(at 101.6 153.67 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6895,7 +6343,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 76.2 120.65 0)
+			(at 101.6 153.67 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -6918,7 +6366,7 @@
 	)
 	(symbol
 		(lib_id "Device:LED")
-		(at 213.36 142.24 90)
+		(at 248.92 147.32 90)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -6928,7 +6376,7 @@
 		(dnp no)
 		(uuid "cb84456e-85ad-59cc-b6f2-0bdf8020ba35")
 		(property "Reference" "D13"
-			(at 215.9 141.61 0)
+			(at 244.48 147.95 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -6939,7 +6387,7 @@
 			)
 		)
 		(property "Value" "Orange"
-			(at 215.9 144.14 0)
+			(at 244.48 149.86 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6951,7 +6399,7 @@
 			)
 		)
 		(property "Footprint" "LED_SMD:LED_0603_1608Metric_Pad1.05x0.95mm_HandSolder"
-			(at 213.36 142.24 0)
+			(at 248.92 147.32 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6962,7 +6410,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 213.36 142.24 0)
+			(at 248.92 147.32 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6973,7 +6421,7 @@
 			)
 		)
 		(property "Description" "Orange 605 nm 0603 LED (XINGLIGHT)"
-			(at 213.36 142.24 0)
+			(at 248.92 147.32 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6984,7 +6432,7 @@
 			)
 		)
 		(property "LCSC" "C965800"
-			(at 213.36 142.24 0)
+			(at 248.92 147.32 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6995,7 +6443,7 @@
 			)
 		)
 		(property "MPN" "XL-1608UOC-06"
-			(at 213.36 142.24 0)
+			(at 248.92 147.32 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7022,7 +6470,7 @@
 	)
 	(symbol
 		(lib_id "Device:R")
-		(at 45.72 127 0)
+		(at 170.18 121.92 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -7032,7 +6480,7 @@
 		(dnp no)
 		(uuid "cfb32dbf-11b1-5538-8411-e21bc35ff70a")
 		(property "Reference" "R4"
-			(at 48.26 125.73 0)
+			(at 172.72 120.65 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -7042,8 +6490,8 @@
 				(justify left)
 			)
 		)
-		(property "Value" "3.3k"
-			(at 48.26 128.27 0)
+		(property "Value" "820"
+			(at 172.72 123.19 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -7054,7 +6502,7 @@
 			)
 		)
 		(property "Footprint" "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder"
-			(at 45.72 127 0)
+			(at 170.18 121.92 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7065,7 +6513,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 45.72 127 0)
+			(at 170.18 121.92 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7075,8 +6523,8 @@
 				)
 			)
 		)
-		(property "Description" "3.3 kOhm 1% 0603, LED current limit"
-			(at 45.72 127 0)
+		(property "Description" "820 Ohm 1% 0603, digit C (4 LEDs)"
+			(at 170.18 121.92 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7086,8 +6534,8 @@
 				)
 			)
 		)
-		(property "LCSC" "C22978"
-			(at 45.72 127 0)
+		(property "LCSC" "C23253"
+			(at 170.18 121.92 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7097,8 +6545,8 @@
 				)
 			)
 		)
-		(property "MPN" "0603WAF3301T5E"
-			(at 45.72 127 0)
+		(property "MPN" "0603WAF8200T5E"
+			(at 170.18 121.92 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7124,8 +6572,8 @@
 		)
 	)
 	(symbol
-		(lib_id "power:VCC")
-		(at 106.68 120.65 0)
+		(lib_id "power:GND")
+		(at 127 153.67 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -7135,7 +6583,7 @@
 		(dnp no)
 		(uuid "d07c79b0-e89d-5487-a1a8-0c2b8eb4f66e")
 		(property "Reference" "#PWR20"
-			(at 106.68 127 0)
+			(at 127 160.02 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7145,8 +6593,8 @@
 				)
 			)
 		)
-		(property "Value" "VCC"
-			(at 106.68 116.84 0)
+		(property "Value" "GND"
+			(at 127 157.48 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -7156,7 +6604,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 106.68 120.65 0)
+			(at 127 153.67 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7167,7 +6615,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 106.68 120.65 0)
+			(at 127 153.67 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7178,7 +6626,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 106.68 120.65 0)
+			(at 127 153.67 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -7200,8 +6648,8 @@
 		)
 	)
 	(symbol
-		(lib_id "power:VCC")
-		(at 182.88 120.65 0)
+		(lib_id "power:GND")
+		(at 261.62 153.67 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -7209,9 +6657,9 @@
 		(on_board no)
 		(in_pos_files yes)
 		(dnp no)
-		(uuid "d5977204-a93a-560d-814d-5149bf4c78b6")
-		(property "Reference" "#PWR25"
-			(at 182.88 127 0)
+		(uuid "d16ac65e-a272-5c70-91c2-5e6ff0e826e5")
+		(property "Reference" "#PWR29"
+			(at 261.62 160.02 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7221,8 +6669,8 @@
 				)
 			)
 		)
-		(property "Value" "VCC"
-			(at 182.88 116.84 0)
+		(property "Value" "GND"
+			(at 261.62 157.48 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -7232,7 +6680,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 182.88 120.65 0)
+			(at 261.62 153.67 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7243,7 +6691,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 182.88 120.65 0)
+			(at 261.62 153.67 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7254,7 +6702,83 @@
 			)
 		)
 		(property "Description" ""
-			(at 182.88 120.65 0)
+			(at 261.62 153.67 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "56492045-3a23-546f-8e05-568ea3883bec")
+		)
+		(instances
+			(project "ece_souvenir"
+				(path "/6c3e6f0e-5b1a-4c55-9e0e-ece500000001"
+					(reference "#PWR29")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 210.82 153.67 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board no)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "d5977204-a93a-560d-814d-5149bf4c78b6")
+		(property "Reference" "#PWR25"
+			(at 210.82 160.02 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "GND"
+			(at 210.82 157.48 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 210.82 153.67 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 210.82 153.67 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 210.82 153.67 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -7276,8 +6800,8 @@
 		)
 	)
 	(symbol
-		(lib_id "power:VCC")
-		(at 228.6 120.65 0)
+		(lib_id "power:GND")
+		(at 248.92 153.67 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -7287,7 +6811,7 @@
 		(dnp no)
 		(uuid "dfec191c-478e-51bf-86d3-db4d6f79821f")
 		(property "Reference" "#PWR28"
-			(at 228.6 127 0)
+			(at 248.92 160.02 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7297,8 +6821,8 @@
 				)
 			)
 		)
-		(property "Value" "VCC"
-			(at 228.6 116.84 0)
+		(property "Value" "GND"
+			(at 248.92 157.48 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -7308,7 +6832,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 228.6 120.65 0)
+			(at 248.92 153.67 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7319,7 +6843,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 228.6 120.65 0)
+			(at 248.92 153.67 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7330,7 +6854,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 228.6 120.65 0)
+			(at 248.92 153.67 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -7346,109 +6870,6 @@
 			(project "ece_souvenir"
 				(path "/6c3e6f0e-5b1a-4c55-9e0e-ece500000001"
 					(reference "#PWR28")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:R")
-		(at 228.6 127 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "e7a94dbf-f090-5f7b-ab73-5aa8e4926266")
-		(property "Reference" "R16"
-			(at 231.14 125.73 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "3.3k"
-			(at 231.14 128.27 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder"
-			(at 228.6 127 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 228.6 127 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "3.3 kOhm 1% 0603, LED current limit"
-			(at 228.6 127 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "LCSC" "C22978"
-			(at 228.6 127 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "MPN" "0603WAF3301T5E"
-			(at 228.6 127 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "86631033-e6c5-5b45-b6bf-8e5c1963eadd")
-		)
-		(pin "2"
-			(uuid "9ce38b76-01a3-5b6c-a522-eff92487b0af")
-		)
-		(instances
-			(project "ece_souvenir"
-				(path "/6c3e6f0e-5b1a-4c55-9e0e-ece500000001"
-					(reference "R16")
 					(unit 1)
 				)
 			)
@@ -7635,7 +7056,7 @@
 	)
 	(symbol
 		(lib_id "Device:R")
-		(at 60.96 127 0)
+		(at 236.22 121.92 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -7645,7 +7066,7 @@
 		(dnp no)
 		(uuid "ededfea0-7eb0-5bbd-992e-c13dc25e38e7")
 		(property "Reference" "R5"
-			(at 63.5 125.73 0)
+			(at 238.76 120.65 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -7655,8 +7076,8 @@
 				(justify left)
 			)
 		)
-		(property "Value" "3.3k"
-			(at 63.5 128.27 0)
+		(property "Value" "680"
+			(at 238.76 123.19 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -7667,7 +7088,7 @@
 			)
 		)
 		(property "Footprint" "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder"
-			(at 60.96 127 0)
+			(at 236.22 121.92 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7678,7 +7099,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 60.96 127 0)
+			(at 236.22 121.92 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7688,8 +7109,8 @@
 				)
 			)
 		)
-		(property "Description" "3.3 kOhm 1% 0603, LED current limit"
-			(at 60.96 127 0)
+		(property "Description" "680 Ohm 1% 0603, digit E2 (5 LEDs)"
+			(at 236.22 121.92 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7699,8 +7120,8 @@
 				)
 			)
 		)
-		(property "LCSC" "C22978"
-			(at 60.96 127 0)
+		(property "LCSC" "C23228"
+			(at 236.22 121.92 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7710,8 +7131,8 @@
 				)
 			)
 		)
-		(property "MPN" "0603WAF3301T5E"
-			(at 60.96 127 0)
+		(property "MPN" "0603WAF6800T5E"
+			(at 236.22 121.92 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7967,7 +7388,7 @@
 	)
 	(symbol
 		(lib_id "Device:LED")
-		(at 182.88 142.24 90)
+		(at 223.52 147.32 90)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -7977,7 +7398,7 @@
 		(dnp no)
 		(uuid "f5c911ae-3689-554e-ad8c-c131e0ab1fdb")
 		(property "Reference" "D11"
-			(at 185.42 141.61 0)
+			(at 219.08 147.95 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -7988,7 +7409,7 @@
 			)
 		)
 		(property "Value" "Orange"
-			(at 185.42 144.14 0)
+			(at 219.08 149.86 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8000,7 +7421,7 @@
 			)
 		)
 		(property "Footprint" "LED_SMD:LED_0603_1608Metric_Pad1.05x0.95mm_HandSolder"
-			(at 182.88 142.24 0)
+			(at 223.52 147.32 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8011,7 +7432,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 182.88 142.24 0)
+			(at 223.52 147.32 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8022,7 +7443,7 @@
 			)
 		)
 		(property "Description" "Orange 605 nm 0603 LED (XINGLIGHT)"
-			(at 182.88 142.24 0)
+			(at 223.52 147.32 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8033,7 +7454,7 @@
 			)
 		)
 		(property "LCSC" "C965800"
-			(at 182.88 142.24 0)
+			(at 223.52 147.32 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8044,7 +7465,7 @@
 			)
 		)
 		(property "MPN" "XL-1608UOC-06"
-			(at 182.88 142.24 0)
+			(at 223.52 147.32 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8070,8 +7491,8 @@
 		)
 	)
 	(symbol
-		(lib_id "power:VCC")
-		(at 198.12 120.65 0)
+		(lib_id "power:GND")
+		(at 223.52 153.67 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -8081,7 +7502,7 @@
 		(dnp no)
 		(uuid "f91c7a03-844a-59e3-9d4c-56b9b51c98d4")
 		(property "Reference" "#PWR26"
-			(at 198.12 127 0)
+			(at 223.52 160.02 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8091,8 +7512,8 @@
 				)
 			)
 		)
-		(property "Value" "VCC"
-			(at 198.12 116.84 0)
+		(property "Value" "GND"
+			(at 223.52 157.48 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -8102,7 +7523,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 198.12 120.65 0)
+			(at 223.52 153.67 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8113,7 +7534,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 198.12 120.65 0)
+			(at 223.52 153.67 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8124,7 +7545,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 198.12 120.65 0)
+			(at 223.52 153.67 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -8147,7 +7568,7 @@
 	)
 	(symbol
 		(lib_id "Device:LED")
-		(at 137.16 142.24 90)
+		(at 175.26 147.32 90)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -8157,7 +7578,7 @@
 		(dnp no)
 		(uuid "fd05cf0a-870e-5193-9ec7-685c58791b92")
 		(property "Reference" "D8"
-			(at 139.7 141.61 0)
+			(at 170.82 147.95 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -8168,7 +7589,7 @@
 			)
 		)
 		(property "Value" "Orange"
-			(at 139.7 144.14 0)
+			(at 170.82 149.86 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8180,7 +7601,7 @@
 			)
 		)
 		(property "Footprint" "LED_SMD:LED_0603_1608Metric_Pad1.05x0.95mm_HandSolder"
-			(at 137.16 142.24 0)
+			(at 175.26 147.32 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8191,7 +7612,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 137.16 142.24 0)
+			(at 175.26 147.32 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8202,7 +7623,7 @@
 			)
 		)
 		(property "Description" "Orange 605 nm 0603 LED (XINGLIGHT)"
-			(at 137.16 142.24 0)
+			(at 175.26 147.32 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8213,7 +7634,7 @@
 			)
 		)
 		(property "LCSC" "C965800"
-			(at 137.16 142.24 0)
+			(at 175.26 147.32 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8224,7 +7645,7 @@
 			)
 		)
 		(property "MPN" "XL-1608UOC-06"
-			(at 137.16 142.24 0)
+			(at 175.26 147.32 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
