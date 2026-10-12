@@ -273,9 +273,9 @@ def build():
            "t_on  = 0.693 * R2 * C1          = 83 ms\n"
            "t_off = 0.693 * (R1 + R2) * C1   = 776 ms\n"
            "f = 1.16 Hz, LED duty 9.7 %\n"
-           "I_digit = (VCC - Vce_sat - Vf) / R:  E 680R, C 820R\n"
-           "  -> ~0.4 mA @3.3 V ... ~0.9 mA @5 V average per LED (shared, unballasted)\n"
-           "Q1 base: (VCC - Veb) / 4.7k = 0.55 ... 0.9 mA, forced beta >= 10",
+           "I_digit = (VCC - Vce_sat - Vf) / R:  E (orange) 680R, C (white) 220R\n"
+           "  orange ~0.4 mA @3.3 V ... ~0.9 mA @5 V, white ~0.7 ... 2.6 mA per LED (shared, unballasted)\n"
+           "Q1 base: (VCC - Veb) / 3.3k = 0.8 ... 1.3 mA, forced beta ~9-15 at <= 20 mA",
            12 * G, 14 * G)
     s.text("D1-D14 placed on BOTTOM side spelling \"ECE\" (7-segment layout).", 30 * G, 66 * G)
     return s

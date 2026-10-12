@@ -187,6 +187,10 @@ RULES = {
     "min_text_height": 1.0,
     "min_text_thickness": 0.15,
     "min_silk_clearance": 0.0,
+    # GND pour is a supplementary return path: every pad also has a routed trace,
+    # so one thermal spoke is enough (and easier to hand-solder) where the
+    # router has boxed the other sides in.
+    "min_resolved_spokes": 1,
 }
 NETCLASSES = {  # name: (track, clearance, via dia, via drill, net patterns)
     "Default": (0.2, 0.2, 0.6, 0.3, []),

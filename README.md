@@ -29,9 +29,9 @@ has one shared current-limit resistor (advisor review 2026-10-11); LED cathodes 
 | t_on (LEDs lit) | 0.693·R2·C1 | 83 ms |
 | t_off | 0.693·(R1+R2)·C1 | 776 ms |
 | f | 1/(t_on+t_off) | 1.16 Hz, duty 9.7 % |
-| I per digit | (VCC − Vce_sat − Vf)/R, R = 680 Ω (E, 5 LEDs), 820 Ω (C, 4 LEDs) | E ≈ 2.0 mA @3.3 V … 4.5 mA @5 V |
-| I per LED (avg of digit) | I_digit / n | ≈ 0.4 mA @3.3 V … 0.9 mA @5 V |
-| Q1 base | (VCC − V_EB − V_OL)/4.7 kΩ | 0.55 … 0.9 mA (forced β ≥ 10 at ≤ 13 mA) |
+| I per digit | (VCC − Vce_sat − Vf)/R; E: 680 Ω, orange Vf ≈ 1.85 V; C: 220 Ω, white Vf ≈ 2.6 V | E ≈ 2.0 → 4.5 mA, C ≈ 2.9 → 10.5 mA (3.3 → 5 V) |
+| I per LED (avg of digit) | I_digit / n | orange ≈ 0.4 → 0.9 mA (≈ 6 → 14 mcd), white ≈ 0.7 → 2.6 mA (≈ 5 → 17 mcd) |
+| Q1 load / base | Σ digits; (VCC − V_EB − V_OL)/3.3 kΩ | ≤ 19.5 mA; I_B 0.8 … 1.3 mA (forced β ≈ 9–15) |
 
 Design notes:
 - Without Q1 the TLC555 could sink the ≈13 mA directly (100 mA typ / 150 mA abs-max, TI SLFS043K);
@@ -40,6 +40,8 @@ Design notes:
 - Shared resistors trade matching for parts count: parallel LEDs on one resistor split current by
   exp(ΔVf / nV_T) (nV_T ≈ 50 mV at ~1 mA), so a 30 mV Vf spread can mean ≈1.8× current between
   segments of one digit. Use LEDs from one reel.
+- White C: only ≈ 0.65 V of headroom at 3.3 V (Vf ≈ 2.6 V + Vce_sat), so the C dims fastest as the
+  supply drops; below ≈ 3.0 V (e.g. a CR2032) it will barely light. Run from ≥ 3.3 V.
 
 ## Board
 
@@ -80,12 +82,13 @@ All passives/LEDs use KiCad `*_0603_*_HandSolder` footprints; Q1 uses `SOT-23_Ha
 |---|---|---|
 | U1 | TI TLC555CDR, 2–15 V CMOS 555, SOIC-8 | C6986 |
 | Q1 | onsemi MMBT3906LT1G PNP, SOT-23 | C53444 |
-| D1–D14 | XINGLIGHT XL-1608UOC-06 orange 605 nm 0603 | C965800 |
+| D1–D5, D10–D14 (E, E) | XINGLIGHT XL-1608UOC-06 orange 605 nm 0603 | C965800 |
+| D6–D9 (C) | XINGLIGHT XL-1608UWC-04 white 0603, Vf 2.7 V @ 20 mA | C965808 |
 | C1 | Yageo CC0603KRX7R7BB105, 1 µF 16 V X7R | C106248 |
 | C2 / C3 | 100 nF 50 V X7R / 10 nF 50 V X7R 0603 | C14663 / C57112 |
 | R1 / R2 | 1 MΩ / 120 kΩ 1 % 0603 | C22935 / C25808 |
-| R3, R5 / R4 | 680 Ω (E digits) / 820 Ω (C digit) 1 % 0603 | C23228 / C23253 |
-| R6 | 4.7 kΩ 1 % 0603 (Q1 base) | C23162 |
+| R3, R5 / R4 | 680 Ω (orange E digits) / 220 Ω (white C digit) 1 % 0603 | C23228 / C22962 |
+| R6 | 3.3 kΩ 1 % 0603 (Q1 base) | C22978 |
 
 ## Testing
 
@@ -151,10 +154,10 @@ between runs; what must hold is 0 F.Cu, 0 vias, 0 crossings, DRC all zero):
 
 ```
 route_specctra_dsn: {'isError': False, 'result': {... 'final_state': 'COMPLETED', ... 'success': True}}
-widened 7 neck-down segments to net-class width
+widened 8 neck-down segments to net-class width
 mitred 3/3 corners >= 90 deg to 45 deg (0 reverted by DRC)
-GND pour on B.Cu: 430.2 mm^2 filled
-imported hardware/routing/ece_souvenir-<stamp>.ses: 125 B.Cu segs (288.1 mm), 0 F.Cu segs (0.0 mm), 0 vias
+GND pour on B.Cu: 422.7 mm^2 filled
+imported hardware/routing/ece_souvenir-<stamp>.ses: 129 B.Cu segs (297.8 mm), 0 F.Cu segs (0.0 mm), 0 vias
 between-pad crossings: 0
 Found 0 violations
 Found 0 unconnected items
@@ -171,19 +174,19 @@ Saved DRC Report to hardware/drc.rpt
 Expected output (exit 0):
 
 ```
-bends: 0 right-angle, 0 acute (>90 deg turn); T-junctions: 11; vias: 0
+bends: 0 right-angle, 0 acute (>90 deg turn); T-junctions: 10; vias: 0
 stubs: 0
 copper-to-edge: min 1.00 mm (/TH); 0 segments closer than 1.0 mm (nets: [])
 nets: width mm / length mm
-  /A_C         [0.2]   19.6
-  /A_E1        [0.2]   20.6
-  /A_E2        [0.2]   20.6
+  /A_C         [0.2]   20.6
+  /A_E1        [0.2]   26.5
+  /A_E2        [0.2]   23.5
   /CV          [0.2]    2.2
   /DIS         [0.2]    4.0
   /LED_PWR     [0.3]   16.9
   /OUT         [0.2]    5.3
   /TH          [0.2]   18.3
-  GND          [0.3]   72.1
+  GND          [0.3]   72.0
   Net-(Q1-B)   [0.2]    6.9
   VCC          [0.3]  101.6
 EMI geometry: PASS
